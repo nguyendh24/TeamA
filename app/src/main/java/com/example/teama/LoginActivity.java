@@ -1,8 +1,5 @@
 package com.example.teama;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
-
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -11,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
     /**
@@ -47,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         eLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String inputEmail = eEmail.getText()); //need toString to convert eEmail
+                String inputEmail = eEmail.getText().toString(); //need toString to convert eEmail
                 String inputPW = ePassword.getText().toString();
 
                 if (inputEmail.isEmpty() || inputPW.isEmpty()) { //valid input
