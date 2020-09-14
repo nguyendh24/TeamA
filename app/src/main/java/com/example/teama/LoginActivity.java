@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         eLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String inputEmail = eEmail.getText()); //need toString to convert eEmail
+                String inputEmail = eEmail.getText().toString(); //need toString to convert eEmail
                 String inputPW = ePassword.getText().toString();
 
                 if (inputEmail.isEmpty() || inputPW.isEmpty()) { //valid input
