@@ -46,11 +46,10 @@ public class LoginActivity extends AppCompatActivity {
         eNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
                 startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
-=======
+
                 startActivity(new Intent(getApplicationContext(), RegistrationActivity.class));
->>>>>>> 3c1aeb9b2c6659baedfe5402d83e062d798c9dd8
+
             }
         });
 
@@ -71,11 +70,14 @@ public class LoginActivity extends AppCompatActivity {
                             eLogin.setEnabled(false); //if user exceed login attempts button will be disabled
                     } else {
                         Toast.makeText(LoginActivity.this, "Login success! ",Toast.LENGTH_SHORT).show();
-                        /*******
-                         * CODE AFTER LOGIN SCREEN
-                         */
-                        //Intent intent = new Intent(MainActivity.this, "NextPageAfterLoginGoesHere.class");
-                        //startActivity(intent);
+                        //sends user to the main activity page
+                        Button loginbtn = (Button)findViewById(R.id.buttonLogin);
+                        loginbtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                            }
+                        });
 
                     }
                 }
