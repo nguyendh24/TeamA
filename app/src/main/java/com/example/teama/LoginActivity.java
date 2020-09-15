@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String inputEmail = eEmail.getText().toString(); //need toString to convert eEmail
                 String inputPW = ePassword.getText().toString();
+                admin(inputEmail, inputPW);
 
                 if (inputEmail.isEmpty() || inputPW.isEmpty()) { //valid input
                     Toast.makeText(LoginActivity.this, "invalid input ",Toast.LENGTH_SHORT).show();
@@ -65,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (!isValidEmail(inputEmail)) {
                         counter--;
                         eAttempts.setText("# of attempts remaining: " + counter);
-                        Toast.makeText(LoginActivity.this, "invalid email ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "invalid email *", Toast.LENGTH_SHORT).show();
                         if (counter == 0)
                             eLogin.setEnabled(false); //if user exceed login attempts button will be disabled
                     } else {
@@ -92,5 +93,13 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
+    private void admin(String admin, String adminPW) {
+        if (admin.equalsIgnoreCase("admin") && adminPW.equalsIgnoreCase("123")) {
+            setContentView(R.layout.activity_main);
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
+
     }
 }

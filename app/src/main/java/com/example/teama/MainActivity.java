@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
         //setting button goes to setting activity
         final Button settings = (Button)findViewById(R.id.settings);

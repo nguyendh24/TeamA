@@ -14,8 +14,8 @@
         <activity android:name=".MyPantry"></activity>
         <activity android:name=".SettingClass" />
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
