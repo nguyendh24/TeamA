@@ -1,8 +1,11 @@
 package com.example.teama;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
+/**
+ * Want to create a login screen that requires a 6 character long password
+ * where the button wont be active to click until req reached
+ */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -11,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
     /**
@@ -22,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView eAttempts;
     private Button eLogin;
     private TextView eNewUser;
+
     private int counter = 5;
 
 
@@ -29,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         eEmail = findViewById(R.id.editTextEmailAddress); //findViewById connects/binds to respective xml layout to variable
         ePassword = findViewById(R.id.editTextRegPW);
@@ -40,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         eNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  startActivity(new Intent(LoginActivity.this, Registration.class));
+                startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
             }
         });
 
