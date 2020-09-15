@@ -46,11 +46,8 @@ public class LoginActivity extends AppCompatActivity {
         eNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
-                startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
-=======
+              startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
                 startActivity(new Intent(getApplicationContext(), RegistrationActivity.class));
->>>>>>> 3c1aeb9b2c6659baedfe5402d83e062d798c9dd8
             }
         });
 

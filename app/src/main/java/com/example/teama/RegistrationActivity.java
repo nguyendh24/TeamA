@@ -53,4 +53,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
+    /****
+     * Testing commit to branch 
+     */
 }
