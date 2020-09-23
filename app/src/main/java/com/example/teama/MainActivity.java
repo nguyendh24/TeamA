@@ -9,11 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
+    private Button bIngredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bIngredients = findViewById(R.id.buttonIngredients);
 
         //setting button goes to setting activity
         final Button settings = (Button)findViewById(R.id.settings);
@@ -32,5 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,MyPantry.class));
             }
         });
+
     }
 }
