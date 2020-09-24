@@ -12,6 +12,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "ingredients_table";
     public static final String COL_1 = "Type";
     public static final String COL_2 = "Ingredients";
+    public static final String Col_3 = "Amount";
+
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
