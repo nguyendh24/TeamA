@@ -13,6 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_1 = "Type";
     public static final String COL_2 = "Ingredients";
     public static final String Col_3 = "Amount";
+    public static final String Col_4 = "Cost";
 
 
     public DatabaseHelper(@Nullable Context context) {
