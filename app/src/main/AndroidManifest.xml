@@ -11,7 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< .merge_file_7aEDny
         <activity android:name=".ProfileActivity"></activity>
+=======
+        <activity android:name=".mealprep"></activity>
+        <activity android:name=".ProfileActivity" />
+>>>>>>> .merge_file_xze13L
         <activity android:name=".MyPantry" />
         <activity android:name=".SettingClass" />
         <activity android:name=".RegistrationActivity" />

@@ -36,6 +36,7 @@
         app:layout_constraintEnd_toStartOf="@+id/settings"
         app:layout_constraintStart_toEndOf="@+id/buttonIngredients"
         app:layout_constraintTop_toTopOf="parent" />
+<<<<<<< HEAD
 
     <ImageView
         android:id="@+id/imageView"
@@ -48,6 +49,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.998"
         tools:srcCompat="@tools:sample/avatars" />
+=======
+>>>>>>> b531e9f822fb62c9135d36908283f059b674c5de
 
     <View
         android:id="@+id/divider"
@@ -58,7 +61,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/button8"
+=======
+        app:layout_constraintTop_toBottomOf="@+id/MealPrep"
+>>>>>>> b531e9f822fb62c9135d36908283f059b674c5de
         app:layout_constraintVertical_bias="0.00999999" />
 
     <Button
@@ -73,11 +80,15 @@
         android:text="Ingredients"
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/pantryButton"
+<<<<<<< HEAD
         app:layout_constraintStart_toEndOf="@+id/button8"
+=======
+        app:layout_constraintStart_toEndOf="@+id/MealPrep"
+>>>>>>> b531e9f822fb62c9135d36908283f059b674c5de
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/MealPrep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -85,7 +96,11 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
+<<<<<<< HEAD
         android:text="Button"
+=======
+        android:text="Meal Prep"
+>>>>>>> b531e9f822fb62c9135d36908283f059b674c5de
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/buttonIngredients"
         app:layout_constraintStart_toStartOf="parent"
