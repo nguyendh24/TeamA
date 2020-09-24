@@ -10,46 +10,48 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private Button bIngredients;
+    private Button bSettings;
+    private Button bPantry;
+    private Button bMealPrep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bIngredients = findViewById(R.id.buttonIngredients);
-<<<<<<< HEAD
-=======
 
-        final Button mealBtn = findViewById(R.id.MealPrep);
-        mealBtn.setOnClickListener(new View.OnClickListener() {
+        bIngredients = findViewById(R.id.buttonIngredients);
+        bSettings = findViewById(R.id.settings);
+        bPantry = findViewById(R.id.pantryButton);
+        bMealPrep = findViewById(R.id.buttonMealPrep);
+
+        bIngredients.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,mealprep.class));
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, IngredientsActivity.class));
             }
         });
->>>>>>> b531e9f822fb62c9135d36908283f059b674c5de
-
-        //setting button goes to setting activity
-        final Button settings = (Button) findViewById(R.id.settings);
-        settings.setOnClickListener(new View.OnClickListener() {
+        bSettings.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // Setting button goes to setting activity
                 startActivity(new Intent(MainActivity.this, SettingClass.class));
             }
 
         });
-        //pantry button set to action
-        Button pantrybtn = (Button) findViewById(R.id.pantryButton);
-        pantrybtn.setOnClickListener(new View.OnClickListener() {
+
+        bPantry.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // Pantry button set to action
                 startActivity(new Intent(MainActivity.this, MyPantry.class));
             }
         });
 
-<<<<<<< HEAD
-=======
-        //mealPrep button to go to calendar view
+        bMealPrep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { // mealPrep button to go to calendar view
+                startActivity(new Intent(MainActivity.this,mealprep.class));
+            }
+        });
 
->>>>>>> b531e9f822fb62c9135d36908283f059b674c5de
+
     }
 }
