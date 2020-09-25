@@ -39,6 +39,18 @@
         app:layout_constraintStart_toEndOf="@+id/buttonIngredients"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.998"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <View
         android:id="@+id/divider"
         android:layout_width="409dp"
@@ -48,7 +60,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MealPrep"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMealPrep"
         app:layout_constraintVertical_bias="0.00999999" />
 
     <Button
@@ -63,11 +75,11 @@
         android:text="Ingredients"
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/pantryButton"
-        app:layout_constraintStart_toEndOf="@+id/MealPrep"
+        app:layout_constraintStart_toEndOf="@+id/buttonMealPrep"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/MealPrep"
+        android:id="@+id/buttonMealPrep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"

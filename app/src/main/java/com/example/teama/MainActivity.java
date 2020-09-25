@@ -43,14 +43,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button ingredients = (Button)findViewById(R.id.buttonIngredients);
-        ingredients.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,IngredientsActivity.class));
-            }
-        });
-
+        //mealPrep button to go to calendar view
 
     }
 }
