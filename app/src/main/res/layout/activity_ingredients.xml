@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
+
     tools:context=".IngredientsActivity"
     android:background="@drawable/appbackground"
 >
@@ -44,5 +44,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.21" />
->>>>>>> b259248289f6d3161dacd1864d6ab65399e9a6be
+
 </androidx.constraintlayout.widget.ConstraintLayout>

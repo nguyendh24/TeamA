@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         bIngredients = findViewById(R.id.buttonIngredients);
 
-        final Button mealBtn = findViewById(R.id.MealPrep);
+        final Button mealBtn = findViewById(R.id.buttonMealPrep);
         mealBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
