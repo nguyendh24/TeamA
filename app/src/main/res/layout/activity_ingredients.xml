@@ -8,7 +8,6 @@
     tools:context=".IngredientsActivity"
     android:background="@drawable/appbackground"
 >
-=======
     tools:context=".IngredientsActivity">
 
     <TextView
