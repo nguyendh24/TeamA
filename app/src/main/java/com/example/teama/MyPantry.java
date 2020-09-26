@@ -5,6 +5,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//needs a database to store peoples ingredients and recipes
+
 public class MyPantry extends AppCompatActivity {
 
     @Override
