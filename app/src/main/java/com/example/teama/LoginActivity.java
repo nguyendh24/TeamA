@@ -6,6 +6,8 @@ package com.example.teama;
  */
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -32,7 +34,7 @@ public class LoginActivity extends AppCompatActivity  {
     /**
      * Defining all the elements of layout
      */
-
+    LoginDatabase loginDb;
     private EditText eEmail;
     private EditText ePassword;
     private TextView eAttempts;
@@ -106,15 +108,27 @@ public class LoginActivity extends AppCompatActivity  {
                         if (counter == 0)
                             eLogin.setEnabled(false); //if user exceed login attempts button will be disabled
                     } else {
-                        Toast.makeText(LoginActivity.this, "Login success! ",Toast.LENGTH_SHORT).show();
-                        //sends user to the main activity page
-                       // Button loginbtn = (Button)findViewById(R.id.buttonLogin);
-                        eLogin.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                        //checks database to see if username is there and is correct
+                        Boolean validUser = loginDb.validLogin(inputEmail,inputPW);
+                        if(validUser) {
+                            Toast.makeText(LoginActivity.this, "Login success! ", Toast.LENGTH_SHORT).show();
+                            //sends user to the main activity page
+                            // Button loginbtn = (Button)findViewById(R.id.buttonLogin);
+                            eLogin.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                }
+                            });
+                            //if incorrect it shows a message and makes counter -1
+                            //when counter ==0 it will disable users account.
+                        }else
+                            Toast.makeText(LoginActivity.this,"Incorrect email or Password",Toast.LENGTH_LONG).show();
+                            counter--;
+                            if (counter == 0){
+                                eLogin.setEnabled(false);
+                                Toast.makeText(LoginActivity.this,"Your account has been disabled",Toast.LENGTH_LONG).show();
                             }
-                        });
 
                     }
                 }
@@ -186,4 +200,5 @@ public class LoginActivity extends AppCompatActivity  {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         //updateUI(account); **create intent to second activity!!
     }
+
 }
