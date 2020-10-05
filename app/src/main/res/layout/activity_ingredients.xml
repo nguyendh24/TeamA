@@ -4,20 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/appbackground"
-    android:visibility="visible"
+
     tools:context=".IngredientsActivity"
-    tools:visibility="visible">
+    android:background="@drawable/appbackground"
+>
     tools:context=".IngredientsActivity">
 
-
     <SearchView
-        android:layout_width="386dp"
-        android:layout_height="80dp"
+        android:id="@+id/searchView"
+        android:layout_width="416dp"
+        android:layout_height="53dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.003" />
+        app:layout_constraintVertical_bias="0.0">
+
+
+    </SearchView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

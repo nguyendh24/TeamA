@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         bIngredients = findViewById(R.id.buttonIngredients);
 
         final Button mealBtn = findViewById(R.id.buttonMealPrep);
