@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.Nullable;
 
@@ -48,5 +49,16 @@ public class LoginDatabase extends SQLiteOpenHelper {
            return false;
        }else
         return true;
+    }
+    public boolean validLogin(String email, String password){
+        String sql = "Select count(*) from Login.db where email+'" + email + "' and password= '" + password + "''";
+        SQLiteStatement statement = getReadableDatabase().compileStatement(sql);
+        long l = statement.simpleQueryForLong();
+        statement.close();
+
+        if(l == 1){
+            return true;
+        }else
+            return false;
     }
 }
