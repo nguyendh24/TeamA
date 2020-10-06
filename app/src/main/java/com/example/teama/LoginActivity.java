@@ -19,12 +19,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
 
 public class LoginActivity extends AppCompatActivity  {
@@ -43,7 +41,6 @@ public class LoginActivity extends AppCompatActivity  {
     SignInButton signIn;
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 0;
-    private GoogleApiClient googleApiClient;
 
 
     @Override
