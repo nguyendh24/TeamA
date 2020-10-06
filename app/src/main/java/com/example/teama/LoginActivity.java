@@ -106,7 +106,12 @@ public class LoginActivity extends AppCompatActivity  {
                             eLogin.setEnabled(false); //if user exceed login attempts button will be disabled
                     } else {
                         //checks database to see if username is there and is correct
-                        Boolean validUser = loginDb.validLogin(inputEmail,inputPW);
+                        boolean validUser;
+                        try{
+                             validUser = loginDb.validLogin(inputEmail,inputPW);
+                        }catch (Exception e) {
+                             validUser = false;
+                        }
                         if(validUser) {
                             Toast.makeText(LoginActivity.this, "Login success! ", Toast.LENGTH_SHORT).show();
                             //sends user to the main activity page
