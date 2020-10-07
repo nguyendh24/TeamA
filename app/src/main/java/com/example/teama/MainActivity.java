@@ -1,6 +1,7 @@
 package com.example.teama;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, MyPantry.class));
             }
         });
+
 
         //mealPrep button to go to calendar view
 
