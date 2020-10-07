@@ -43,7 +43,7 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:text="Login"
+        android:text="Test"
         app:fontFamily="@font/abril_fatface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
