@@ -73,7 +73,7 @@ public class RegistrationActivity extends AppCompatActivity {
            boolean isInsert = loginDb.insertData(eName.getText().toString(),eRegEmail.getText().toString(),eCreatePassword.getText().toString());
            if(isInsert = true){
                Toast.makeText(RegistrationActivity.this,"Account created",Toast.LENGTH_LONG).show();
-               startActivity(new Intent(RegistrationActivity.this,LoginActivity.class));
+               startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
            }else
                Toast.makeText(RegistrationActivity.this,"Data failed to add",Toast.LENGTH_LONG).show();
             }

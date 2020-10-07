@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="@drawable/appbackground"
+    android:background="@drawable/prettyappbackground"
     >
 
     <EditText
@@ -15,6 +15,7 @@
         android:ems="10"
         android:hint="Enter email address"
         android:inputType="textEmailAddress"
+        app:fontFamily="@font/abril_fatface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -29,6 +30,7 @@
         android:ems="10"
         android:hint="Enter password"
         android:inputType="textPassword"
+        app:fontFamily="@font/abril_fatface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -42,6 +44,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:text="Login"
+        app:fontFamily="@font/abril_fatface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +54,7 @@
         android:id="@+id/textViewAttempts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:fontFamily="@font/abril_fatface"
         app:layout_constraintBottom_toTopOf="@+id/textViewSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -63,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="New user? Sign-up here"
+        app:fontFamily="@font/abril_fatface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
