@@ -7,7 +7,7 @@ public class SQL_DB {
         private SQL_DB(){}
 
         public static class FeedEntry implements BaseColumns {
-            public static final String TABLE_NAME = "Recipes";
+            public static final String TABLE_NAME = "Recipe";
             public static final String COLUMN_NAME_TITLE = "Type";
             public static final String COLUMN_NAME_SUBTITLE = "Subtitle";
         }
