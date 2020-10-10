@@ -16,10 +16,11 @@ public class IngredientsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ingredients);
         db = new DatabaseHelper(this);
 
-        svIngredients = findViewById(R.id.searchView);
+        svIngredients = findViewById(R.id.searchViewIngredients);
         svIngredients.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
             }
         });
 
