@@ -17,6 +17,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bIngredients = findViewById(R.id.buttonIngredients);
+        bIngredients.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, IngredientsActivity.class));
+            }
+        });
 
         final Button mealBtn = findViewById(R.id.buttonMealPrep);
         mealBtn.setOnClickListener(new View.OnClickListener() {
