@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyPantry">
+    tools:context=".MyPantry"
+    android:background = "@drawable/prettyappbackground"
+    >
 
     <TextView
         android:id="@+id/textView8"
@@ -12,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:text="this should everything user has added from ingredients"
+        app:fontFamily="@font/abril_fatface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:text="have it so they can edit quantity"
+        app:fontFamily="@font/abril_fatface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -31,6 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="maybe sort dairy, bread, meats etc"
+        app:fontFamily="@font/abril_fatface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,19 +49,23 @@
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="14dp"
-        android:text="Seach"
+        android:text="Search"
         android:textSize="24sp"
+        app:fontFamily="@font/abril_fatface"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="73dp"
+        android:layout_height="47dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/search_icon"
         android:text="Search"
+        android:tint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
