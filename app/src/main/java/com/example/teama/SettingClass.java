@@ -24,8 +24,8 @@ public class SettingClass extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        svDiets = (SearchView) findViewById(R.id.searchView);
-        myDietList = (ListView) findViewById(R.id.);
+        svDiets = (SearchView) findViewById(R.id.searchDiets);
+        myDietList = (ListView) findViewById(R.id.listDiets);
         list = new ArrayList<>();
 
         list.add("Keto");
