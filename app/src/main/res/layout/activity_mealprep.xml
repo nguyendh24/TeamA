@@ -24,6 +24,7 @@
         android:layout_width="168dp"
         android:layout_height="24dp"
         android:text="Meal prep for the week"
+        app:fontFamily="@font/abril_fatface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,22 +36,25 @@
         android:layout_width="182dp"
         android:layout_height="39dp"
         android:text="All ingredients will be update in ingerdents page"
+        app:fontFamily="@font/abril_fatface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.647" />
 
-    <Button
+    <ImageButton
         android:id="@+id/bcktoRecipes"
-        android:layout_width="88dp"
-        android:layout_height="35dp"
-        android:text="Recipes"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_width="40dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="20dp"
+        android:background="#00FFFFFF"
+        android:tint="#00000000"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:srcCompat="?attr/actionModeCloseDrawable" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
