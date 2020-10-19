@@ -4,7 +4,12 @@ package com.example.teama;
  * can specify and will populate appropriate recipes accordingly ?
  */
 
+import android.app.ListActivity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -18,6 +23,7 @@ public class SettingClass extends AppCompatActivity {
     private ListView myDietList;
     ArrayList<String> list;
     ArrayAdapter<String> adapter;
+    ArrayList<String> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,15 @@ public class SettingClass extends AppCompatActivity {
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         myDietList.setAdapter(adapter);
+
+        /**
+        myDietList.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+           }
+       });
+         */
+
 
         svDiets.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
