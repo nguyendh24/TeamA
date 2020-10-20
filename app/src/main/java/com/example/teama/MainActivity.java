@@ -2,55 +2,48 @@ package com.example.teama;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button bIngredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        bIngredients = findViewById(R.id.buttonIngredients);
-        bIngredients.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, IngredientsActivity.class));
-            }
-        });
-
-        final Button mealBtn = findViewById(R.id.buttonMealPrep);
-        mealBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,mealprep.class));
-            }
-        });
-
-        //setting button goes to setting activity
-        final Button settings = (Button) findViewById(R.id.settings);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SettingClass.class));
-            }
-
-        });
-        //pantry button set to action
-        Button pantrybtn = (Button) findViewById(R.id.pantryButton);
-        pantrybtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MyPantry.class));
-            }
-        });
-
-        //mealPrep button to go to calendar view
-
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
     }
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.nav_home:
+                            startActivity(new Intent(MainActivity.this, MainActivity.class));
+                            break;
+                        case R.id.nav_MealPrep:
+                            startActivity(new Intent(MainActivity.this, mealprep.class));
+                            break;
+                        case R.id.nav_Ingredients:
+                            startActivity(new Intent(MainActivity.this, IngredientsActivity.class));
+                            break;
+                        case R.id.nav_Pantry:
+                            startActivity(new Intent(MainActivity.this, MyPantry.class));
+                            break;
+                        case R.id.nav_Settings:
+                            startActivity(new Intent(MainActivity.this, SettingClass.class));
+                            break;
+
+                    }
+                    return true;
+                }
+            };
 }
