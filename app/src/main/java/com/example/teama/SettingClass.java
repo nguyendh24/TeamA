@@ -4,14 +4,10 @@ package com.example.teama;
  * can specify and will populate appropriate recipes accordingly ?
  */
 
-import android.app.Activity;
-import android.app.ListActivity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
+
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -39,41 +35,41 @@ public class SettingClass extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         /**
-        svDiets = (SearchView) findViewById(R.id.searchDiets);
-        myDietList = (ListView) findViewById(R.id.listDiets);
-        list = new ArrayList<>();
+         svDiets = (SearchView) findViewById(R.id.searchDiets);
+         myDietList = (ListView) findViewById(R.id.listDiets);
+         list = new ArrayList<>();
 
-        list.add("Keto");
-        list.add("Low-carb");
-        list.add("Paleo");
-        list.add("Vegan");
-        list.add("Atkins");
+         list.add("Keto");
+         list.add("Low-carb");
+         list.add("Paleo");
+         list.add("Vegan");
+         list.add("Atkins");
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-        myDietList.setAdapter(adapter);
+         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+         myDietList.setAdapter(adapter);
 
-        /**
-        myDietList.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-           }
-       });
+         /**
+         myDietList.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+        }
+        });
          */
 
 
         /**
-        svDiets.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
+         svDiets.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        @Override
+        public boolean onQueryTextSubmit(String s) {
+        return false;
+        }
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-                adapter.getFilter().filter(s);
+        @Override
+        public boolean onQueryTextChange(String s) {
+        adapter.getFilter().filter(s);
 
-                return false;
-            }
+        return false;
+        }
         });
          */
     }

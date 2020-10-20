@@ -2,19 +2,15 @@ package com.example.teama;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Set;
 
 public class IngredientsActivity extends AppCompatActivity {
     private SearchView svIngredients;
