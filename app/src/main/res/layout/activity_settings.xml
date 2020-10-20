@@ -9,17 +9,6 @@
     >
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="create a my account button that routes to profile activity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.783" />
-
-    <TextView
         android:id="@+id/Allergies"
         android:layout_width="140dp"
         android:layout_height="26dp"
