@@ -34,7 +34,7 @@ public class SettingClass extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        /**
+
          svDiets = (SearchView) findViewById(R.id.searchDiets);
          myDietList = (ListView) findViewById(R.id.listDiets);
          list = new ArrayList<>();
@@ -57,7 +57,7 @@ public class SettingClass extends AppCompatActivity {
          */
 
 
-        /**
+
          svDiets.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String s) {
@@ -71,7 +71,7 @@ public class SettingClass extends AppCompatActivity {
         return false;
         }
         });
-         */
+
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
