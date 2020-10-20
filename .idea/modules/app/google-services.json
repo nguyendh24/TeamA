@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "493802061519",
+    "firebase_url": "https://login-b12fb.firebaseio.com",
+    "project_id": "login-b12fb",
+    "storage_bucket": "login-b12fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493802061519:android:8f91abc66f0369ff74c1ba",
+        "android_client_info": {
+          "package_name": "com.example.teama"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "493802061519-jjbb8av9uejpf7c5k62o2fsn1oaqvb9e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.teama",
+            "certificate_hash": "51bc1211aad7926e85dbb12447d37b7f7fc4e0b2"
+          }
+        },
+        {
+          "client_id": "493802061519-d52719ikmet2r0aidkkd5rmh1lagp22u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjmPNlRB8YSzo-nGCgJdejgw5nfmaWlF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "493802061519-d52719ikmet2r0aidkkd5rmh1lagp22u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
