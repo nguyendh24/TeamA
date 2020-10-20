@@ -4,17 +4,22 @@ package com.example.teama;
  * can specify and will populate appropriate recipes accordingly ?
  */
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -30,6 +35,10 @@ public class SettingClass extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        /**
         svDiets = (SearchView) findViewById(R.id.searchDiets);
         myDietList = (ListView) findViewById(R.id.listDiets);
         list = new ArrayList<>();
@@ -52,6 +61,7 @@ public class SettingClass extends AppCompatActivity {
          */
 
 
+        /**
         svDiets.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -65,5 +75,31 @@ public class SettingClass extends AppCompatActivity {
                 return false;
             }
         });
+         */
     }
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.nav_home:
+                            startActivity(new Intent(SettingClass.this, MainActivity.class));
+                            break;
+                        case R.id.nav_MealPrep:
+                            startActivity(new Intent(SettingClass.this, mealprep.class));
+                            break;
+                        case R.id.nav_Ingredients:
+                            startActivity(new Intent(SettingClass.this, IngredientsActivity.class));
+                            break;
+                        case R.id.nav_Pantry:
+                            startActivity(new Intent(SettingClass.this, MyPantry.class));
+                            break;
+                        case R.id.nav_Settings:
+                            break;
+
+                    }
+                    return true;
+                }
+            };
+
 }
