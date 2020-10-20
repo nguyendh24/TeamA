@@ -7,29 +7,26 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class RegistrationActivity extends AppCompatActivity {
+    EditText eRegEmail, eCreatePassword, eCheckPassword, eName;
+    Button eSignUp;
+    TextView mLoginBtn;
+    FirebaseAuth fAuth;
 
-    /**
-     * Data Fields
-     */
-    private EditText eRegEmail;
-    private EditText eCreatePassword;
-    private EditText eCheckPassword;
-    private Button eSignUp;
-    private EditText eName;
-    //creates and instance of LoginDatabase
-    LoginDatabase loginDb;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceData){
+        super.onCreate(savedInstanceData);
         setContentView(R.layout.activity_registration);
-
-        //database creation
-        loginDb = new LoginDatabase(this);
 
         eName = findViewById(R.id.editTextTextPersonName);
         eRegEmail = findViewById(R.id.editTextRegEmail);
@@ -37,6 +34,12 @@ public class RegistrationActivity extends AppCompatActivity {
         eCheckPassword = findViewById(R.id.editTextRegPW2);
         eSignUp = findViewById(R.id.buttonSignUp);
 
+        fAuth = FirebaseAuth.getInstance();
+
+        if(fAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
 
         eSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,30 +56,25 @@ public class RegistrationActivity extends AppCompatActivity {
                     } else if (!regPW.equals(pwCheck)) {
                         Toast.makeText(RegistrationActivity.this, "passwords do not match!", Toast.LENGTH_SHORT).show();
                     }else {
-                        //calling on the addData method after all conditions are met.
-                        addData();
+                        fAuth.createUserWithEmailAndPassword(regEmail,regPW).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(RegistrationActivity.this, "User Created", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                }else{
+                                    Toast.makeText(RegistrationActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                        });
                     }
                 }
             }
         });
     }
-
     private boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
-    //adding user data to the database and sending to login page
-    public void addData(){
-        eSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //calls on insertData method from LoginDatabase class
-           boolean isInsert = loginDb.insertData(eName.getText().toString(),eRegEmail.getText().toString(),eCreatePassword.getText().toString());
-           if(isInsert = true){
-               Toast.makeText(RegistrationActivity.this,"Account created",Toast.LENGTH_LONG).show();
-               startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
-           }else
-               Toast.makeText(RegistrationActivity.this,"Data failed to add",Toast.LENGTH_LONG).show();
-            }
-        });
-    }
+
 }
