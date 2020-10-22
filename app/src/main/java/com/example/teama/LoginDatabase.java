@@ -5,11 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
-
 import androidx.annotation.Nullable;
-
-import static android.content.Context.MODE_PRIVATE;
-import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
 public class LoginDatabase extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Login.db";

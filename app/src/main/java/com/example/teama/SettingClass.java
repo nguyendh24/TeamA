@@ -6,8 +6,10 @@ package com.example.teama;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -45,32 +47,33 @@ public class SettingClass extends AppCompatActivity {
          list.add("Vegan");
          list.add("Atkins");
 
-         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+         myDietList.setVisibility(View.GONE);
+         adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, list);
          myDietList.setAdapter(adapter);
 
-         /**
-         myDietList.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-        }
+
+        svDiets.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                if (!TextUtils.isEmpty(s)) {
+                    myDietList.setVisibility(View.VISIBLE);
+                } else {
+                    myDietList.setVisibility(View.GONE);
+                }
+                return false;
+            }
         });
-         */
 
 
 
-         svDiets.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-        @Override
-        public boolean onQueryTextSubmit(String s) {
-        return false;
-        }
 
-        @Override
-        public boolean onQueryTextChange(String s) {
-        adapter.getFilter().filter(s);
 
-        return false;
-        }
-        });
 
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

@@ -1,10 +1,11 @@
 package com.example.teama;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -55,7 +56,8 @@ public class IngredientsActivity extends AppCompatActivity {
         list.add("vegetables");
         list.add("fruit");
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        myList.setVisibility(View.GONE);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, list);
         myList.setAdapter(adapter);
 
         svIngredients.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -67,7 +69,11 @@ public class IngredientsActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String s) {
                 adapter.getFilter().filter(s);
-
+                if (!TextUtils.isEmpty(s)) {
+                    myList.setVisibility(View.VISIBLE);
+                } else {
+                    myList.setVisibility(View.GONE);
+                }
                 return false;
             }
         });
@@ -92,7 +98,6 @@ public class IngredientsActivity extends AppCompatActivity {
                         case R.id.nav_Settings:
                             startActivity(new Intent(IngredientsActivity.this, SettingClass.class));
                             break;
-
                     }
                     return true;
                 }
