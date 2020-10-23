@@ -9,13 +9,11 @@
 
     <CalendarView
         android:id="@+id/calendarView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="73dp"
-        android:layout_marginBottom="260dp"
+        android:layout_width="320dp"
+        android:layout_height="260dp"
+        android:layoutAnimation="@android:anim/linear_interpolator"
+        android:layout_marginTop="32dp"
         android:background="#99FFFFFF"
-        android:firstDayOfWeek="@android:integer/config_shortAnimTime"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
