@@ -1,5 +1,4 @@
 package com.example.teama;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -82,21 +81,21 @@ public class IngredientsActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                public boolean onNavigationItemSelected(MenuItem item) {
                     switch (item.getItemId()) {
-                        case R.id.nav_home:
+                        case R.id.nav_Main:
                             startActivity(new Intent(IngredientsActivity.this, MainActivity.class));
                             break;
                         case R.id.nav_MealPrep:
-                            startActivity(new Intent(IngredientsActivity.this, mealprep.class));
+                            startActivity(new Intent(IngredientsActivity.this, MealPrepActivity.class));
                             break;
                         case R.id.nav_Ingredients:
                             break;
                         case R.id.nav_Pantry:
                             startActivity(new Intent(IngredientsActivity.this, MyPantry.class));
                             break;
-                        case R.id.nav_Settings:
-                            startActivity(new Intent(IngredientsActivity.this, SettingClass.class));
+                        case R.id.nav_Profile:
+                            startActivity(new Intent(IngredientsActivity.this, ProfileActivity.class));
                             break;
                     }
                     return true;

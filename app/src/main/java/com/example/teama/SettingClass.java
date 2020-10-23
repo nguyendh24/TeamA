@@ -32,10 +32,8 @@ public class SettingClass extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
 
          svDiets = (SearchView) findViewById(R.id.searchDiets);
          myDietList = (ListView) findViewById(R.id.listDiets);
@@ -81,11 +79,11 @@ public class SettingClass extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
-                        case R.id.nav_home:
+                        case R.id.nav_Main:
                             startActivity(new Intent(SettingClass.this, MainActivity.class));
                             break;
                         case R.id.nav_MealPrep:
-                            startActivity(new Intent(SettingClass.this, mealprep.class));
+                            startActivity(new Intent(SettingClass.this, MealPrepActivity.class));
                             break;
                         case R.id.nav_Ingredients:
                             startActivity(new Intent(SettingClass.this, IngredientsActivity.class));
@@ -93,7 +91,7 @@ public class SettingClass extends AppCompatActivity {
                         case R.id.nav_Pantry:
                             startActivity(new Intent(SettingClass.this, MyPantry.class));
                             break;
-                        case R.id.nav_Settings:
+                        case R.id.nav_Profile:
                             break;
 
                     }

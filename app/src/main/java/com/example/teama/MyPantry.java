@@ -3,7 +3,7 @@ package com.example.teama;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,19 +25,19 @@ public class MyPantry extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
-                        case R.id.nav_home:
+                        case R.id.nav_Main:
                             startActivity(new Intent(MyPantry.this, MainActivity.class));
                             break;
                         case R.id.nav_MealPrep:
-                            startActivity(new Intent(MyPantry.this, mealprep.class));
+                            startActivity(new Intent(MyPantry.this, MealPrepActivity.class));
                             break;
                         case R.id.nav_Ingredients:
                             startActivity(new Intent(MyPantry.this, IngredientsActivity.class));
                             break;
                         case R.id.nav_Pantry:
                             break;
-                        case R.id.nav_Settings:
-                            startActivity(new Intent(MyPantry.this, SettingClass.class));
+                        case R.id.nav_Profile:
+                            startActivity(new Intent(MyPantry.this, ProfileActivity.class));
                             break;
 
                     }

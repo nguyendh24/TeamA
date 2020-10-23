@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.CalendarView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class mealprep extends AppCompatActivity {
+public class MealPrepActivity extends AppCompatActivity {
     private CalendarView calendar;
 
     //needs to get api call for google calendar or calendar that allows adding events etc
@@ -31,19 +29,19 @@ public class mealprep extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
-                        case R.id.nav_home:
-                            startActivity(new Intent(mealprep.this, MainActivity.class));
+                        case R.id.nav_Main:
+                            startActivity(new Intent(MealPrepActivity.this, MainActivity.class));
                             break;
                         case R.id.nav_MealPrep:
                             break;
                         case R.id.nav_Ingredients:
-                            startActivity(new Intent(mealprep.this, IngredientsActivity.class));
+                            startActivity(new Intent(MealPrepActivity.this, IngredientsActivity.class));
                             break;
                         case R.id.nav_Pantry:
-                            startActivity(new Intent(mealprep.this, MyPantry.class));
+                            startActivity(new Intent(MealPrepActivity.this, MyPantry.class));
                             break;
-                        case R.id.nav_Settings:
-                            startActivity(new Intent(mealprep.this, SettingClass.class));
+                        case R.id.nav_Profile:
+                            startActivity(new Intent(MealPrepActivity.this, ProfileActivity.class));
                             break;
 
                     }
