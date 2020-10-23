@@ -11,7 +11,6 @@
         android:id="@+id/calendarView"
         android:layout_width="320dp"
         android:layout_height="260dp"
-        android:layoutAnimation="@android:anim/linear_interpolator"
         android:layout_marginTop="32dp"
         android:background="#99FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
