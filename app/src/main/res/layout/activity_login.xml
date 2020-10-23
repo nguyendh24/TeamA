@@ -4,10 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@drawable/gradients"
     android:layout_gravity="center"
+    android:id="@+id/layout"
     tools:context=".LoginActivity"
     >
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bad_script"
+        android:text="Pantry Plan"
+        android:textColor="#3EFF8B"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/pot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -16,7 +31,6 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
         android:background="@drawable/border"
         android:contentDescription="border"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,31 +38,42 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
+        android:id="@+id/pot"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:background="@mipmap/icon_pot"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="#3EFF8B"
         android:contentDescription="border_circle"
         app:layout_constraintBottom_toTopOf="@+id/editTextEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73" />
+        app:layout_constraintVertical_bias="0.95" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/circle"
         android:layout_width="115dp"
         android:layout_height="115dp"
         android:background="@drawable/border_circle"
+        android:backgroundTint="#3EFF8B"
+        app:layout_constraintBottom_toBottomOf="@+id/circle1"
+        app:layout_constraintEnd_toEndOf="@+id/circle1"
+        app:layout_constraintStart_toStartOf="@+id/circle1"
+        app:layout_constraintTop_toTopOf="@+id/circle1" />
+
+    <ImageView
+        android:id="@+id/circle1"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:background="@drawable/border_circle"
+        android:backgroundTint="#3EFF8B"
         app:layout_constraintBottom_toTopOf="@+id/editTextEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
     <EditText
         android:id="@+id/editTextEmailAddress"
@@ -112,7 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="132dp"
         android:layout_marginEnd="132dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="55dp"
         android:fontFamily="sans-serif-thin"
         android:text="New user? Sign-up here"
         android:textColor="#FFFFFF"
@@ -129,6 +154,7 @@
         android:layout_marginStart="130dp"
         android:layout_marginEnd="131dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif"
         android:text="sign-in"
         android:textSize="15sp"
         app:fontFamily="serif"
