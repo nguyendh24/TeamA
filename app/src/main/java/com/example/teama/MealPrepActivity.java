@@ -34,8 +34,8 @@ public class MealPrepActivity extends AppCompatActivity {
                             break;
                         case R.id.nav_MealPrep:
                             break;
-                        case R.id.nav_Ingredients:
-                            startActivity(new Intent(MealPrepActivity.this, IngredientsActivity.class));
+                        case R.id.nav_Browser:
+                            startActivity(new Intent(MealPrepActivity.this, BrowserActivity.class));
                             break;
                         case R.id.nav_Pantry:
                             startActivity(new Intent(MealPrepActivity.this, MyPantry.class));

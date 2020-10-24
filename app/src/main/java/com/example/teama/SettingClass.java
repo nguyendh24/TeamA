@@ -85,8 +85,8 @@ public class SettingClass extends AppCompatActivity {
                         case R.id.nav_MealPrep:
                             startActivity(new Intent(SettingClass.this, MealPrepActivity.class));
                             break;
-                        case R.id.nav_Ingredients:
-                            startActivity(new Intent(SettingClass.this, IngredientsActivity.class));
+                        case R.id.nav_Browser:
+                            startActivity(new Intent(SettingClass.this, BrowserActivity.class));
                             break;
                         case R.id.nav_Pantry:
                             startActivity(new Intent(SettingClass.this, MyPantry.class));

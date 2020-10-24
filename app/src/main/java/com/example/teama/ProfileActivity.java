@@ -19,7 +19,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
+        final DrawerLayout drawerLayout = findViewById(R.id.Constraint);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
@@ -43,8 +43,8 @@ public class ProfileActivity extends AppCompatActivity {
                         case R.id.nav_MealPrep:
                             startActivity(new Intent(ProfileActivity.this, MealPrepActivity.class));
                             break;
-                        case R.id.nav_Ingredients:
-                            startActivity(new Intent(ProfileActivity.this, IngredientsActivity.class));
+                        case R.id.nav_Browser:
+                            startActivity(new Intent(ProfileActivity.this, BrowserActivity.class));
                             break;
                         case R.id.nav_Pantry:
                             startActivity(new Intent(ProfileActivity.this, MyPantry.class));

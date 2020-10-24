@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".CustomAdapter"
             tools:ignore="Instantiatable"></activity>
-        <activity android:name=".IngredientsActivity" />
+        <activity android:name=".BrowserActivity" />
         <activity android:name=".MealPrepActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MyPantry" />

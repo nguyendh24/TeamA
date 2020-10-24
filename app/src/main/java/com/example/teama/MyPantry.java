@@ -78,6 +78,9 @@ public class MyPantry extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, list);
         myList.setAdapter(adapter);
 
+        adapterItems = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemsList);
+        addedItemsList.setAdapter(adapterItems);
+
         svIngredients.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -87,10 +90,13 @@ public class MyPantry extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String s) {
                 adapter.getFilter().filter(s);
+                svIngredients.onActionViewExpanded();
                 if (!TextUtils.isEmpty(s)) {
                     myList.setVisibility(View.VISIBLE);
+                    addedItemsList.setVisibility(View.GONE);
                 } else {
                     myList.setVisibility(View.GONE);
+                    addedItemsList.setVisibility(View.VISIBLE);
                 }
                 return false;
             }
@@ -102,12 +108,11 @@ public class MyPantry extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Object selectedItem = myList.getItemAtPosition(i);
+                svIngredients.onActionViewCollapsed();
                 itemsList.add(selectedItem.toString());
             }
         });
 
-        adapterItems = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, itemsList);
-        addedItemsList.setAdapter(adapterItems);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -121,8 +126,8 @@ public class MyPantry extends AppCompatActivity {
                         case R.id.nav_MealPrep:
                             startActivity(new Intent(MyPantry.this, MealPrepActivity.class));
                             break;
-                        case R.id.nav_Ingredients:
-                            startActivity(new Intent(MyPantry.this, IngredientsActivity.class));
+                        case R.id.nav_Browser:
+                            startActivity(new Intent(MyPantry.this, BrowserActivity.class));
                             break;
                         case R.id.nav_Pantry:
                             break;
