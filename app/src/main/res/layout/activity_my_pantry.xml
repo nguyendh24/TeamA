@@ -65,9 +65,8 @@
         android:id="@+id/addedItems"
         android:layout_width="255dp"
         android:layout_height="273dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="213dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginBottom="14dp"
         android:background="#FFFFFF"
         android:divider="@android:color/transparent"
@@ -79,7 +78,7 @@
         android:rowHeight="30dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.21"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchIngredients"
         app:layout_constraintVertical_bias="0.75" />
@@ -89,15 +88,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="198dp"
-        android:layout_marginEnd="289dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="20dp"
         android:text="My Pantry"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/addedItems"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchIngredients" />
+        app:layout_constraintTop_toBottomOf="@+id/myList"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
