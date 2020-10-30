@@ -1,5 +1,8 @@
 package com.example.teama;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+
 import junit.framework.TestCase;
 
 import org.junit.Before;
@@ -10,6 +13,7 @@ import java.util.ArrayList;
 
 public class MyPantryTest extends TestCase {
     ArrayList<String> expected;
+    MyPantry dbMethod = new MyPantry();
 
     @Before
     public void initialize(){
@@ -29,10 +33,18 @@ public class MyPantryTest extends TestCase {
     }
 
     @Test
+    public void testReadInTextFiles() {
+        dbMethod.readInTextFiles();
+    }
+
+    @Test
     public void testCreateIngredientDB() throws FileNotFoundException {
         ArrayList<String> actual = new ArrayList<>();
         MyPantry dbMethod = new MyPantry();
+        getClass().getResourceAsStream("meats.txt");
         dbMethod.createIngredientDB(actual);
         assertEquals(expected, actual);
     }
+
+
 }
