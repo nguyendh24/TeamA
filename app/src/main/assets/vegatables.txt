@@ -1,0 +1,20 @@
+potato
+carrot
+cabbage
+asparagus
+celery
+lettuce
+cabbage 
+brussels sprouts
+spinach 
+okra
+turnip
+onion
+ginger
+cucumber
+garlic
+cauliflower
+fennel
+pea
+eggplant
+shallot
