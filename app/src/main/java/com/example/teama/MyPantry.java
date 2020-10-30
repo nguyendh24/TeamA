@@ -108,8 +108,8 @@ public class MyPantry extends AppCompatActivity {
 
     }
 
-    private void createIngredientDB(ArrayList<String> list) throws FileNotFoundException {
-        input = new Scanner(new File("meats"));
+    protected void createIngredientDB(ArrayList<String> list) throws FileNotFoundException {
+        input = new Scanner(new File("meats.txt"));
         while(input.hasNext()) {
             String str = input.nextLine();
             list.add(str);
