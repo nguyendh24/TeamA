@@ -16,7 +16,8 @@
         <activity android:name=".BrowserActivity" />
         <activity android:name=".MealPrepActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".MyPantry" />
+        <activity android:name=".MyPantry"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
         <activity android:name=".SettingClass" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".MainActivity" />

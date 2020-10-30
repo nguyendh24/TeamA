@@ -1,6 +1,8 @@
 package com.example.teama;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,8 +19,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -48,30 +56,18 @@ public class MyPantry extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        /**
-         * variables used for user to search thru ingredients database
-         */
+
         svIngredients = (SearchView) findViewById(R.id.searchIngredients);
         myList = (ListView) findViewById(R.id.myList);
-        list = new ArrayList<>();
-        try {
-            createIngredientDB(list);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        /**
-         * variables used for selected searched items
-         */
         addedItemsList = (ListView)findViewById(R.id.addedItems);
+        list = new ArrayList<>();
         itemsList = new ArrayList<>();
-
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list); //adapter takes in list; database
+        adapterItems = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemsList);
 
         myList.setVisibility(View.GONE); //Only displays list when user clicks on search bar
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, list); //adapter takes in list; database
+        createIngredientDB(list);
         myList.setAdapter(adapter);
-
-        adapterItems = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemsList);
         addedItemsList.setAdapter(adapterItems);
 
         svIngredients.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -108,12 +104,30 @@ public class MyPantry extends AppCompatActivity {
 
     }
 
-    protected void createIngredientDB(ArrayList<String> list) throws FileNotFoundException {
-        input = new Scanner(new File("meats.txt"));
-        while(input.hasNext()) {
-            String str = input.nextLine();
-            list.add(str);
+    protected InputStream readInTextFiles(){
+        InputStream inputStream = null;
+        try {
+            inputStream = getAssets().open("dairy.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return inputStream;
+    }
+
+    protected void createIngredientDB(ArrayList<String> list) {
+        InputStreamReader streamReader;
+        BufferedReader input;
+        String item = "";
+        try {
+            streamReader = new InputStreamReader(readInTextFiles());
+            input = new BufferedReader(streamReader);
+            while ((item = input.readLine()) != null) {
+                list.add(item);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
