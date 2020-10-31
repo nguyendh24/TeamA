@@ -124,7 +124,6 @@ public class MyPantry extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
