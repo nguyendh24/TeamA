@@ -18,11 +18,13 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MyPantryTest extends TestCase {
-    ArrayList<String> expected;
+    Context MockContext;
+    //ArrayList<String> expected;
     private MyPantry test;
 
+    /**
     @Before
-    public void initialize(){
+    public void initialize() {
         expected = new ArrayList<>();
         expected.add("chicken");
         expected.add("ground chicken");
@@ -37,7 +39,20 @@ public class MyPantryTest extends TestCase {
         expected.add("sausage");
         expected.add("lamb");
     }
+    @Test
+    public void testReadInTextFiles() {
+        test = new MyPantry();
+        test.readInTextFiles();
+    }
 
+    @Test
+    public void testCreateIngredientDB() throws FileNotFoundException {
+        test = new MyPantry();
+        ArrayList<String> actual = new ArrayList<>();
+        test.createIngredientDB(actual, test.readInTextFiles());
+        assertEquals(expected, actual);
+    }
+     */
 
     @Test
     public void testRandomMethodBecauseICantFigureOutUnitTestForOtherOne() {
