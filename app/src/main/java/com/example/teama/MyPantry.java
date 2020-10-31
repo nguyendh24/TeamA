@@ -1,8 +1,6 @@
 package com.example.teama;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,18 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -66,7 +57,7 @@ public class MyPantry extends AppCompatActivity {
         adapterItems = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemsList);
 
         myList.setVisibility(View.GONE); //Only displays list when user clicks on search bar
-        createIngredientDB(list);
+        createIngredientDB(list, readInTextFiles());
         myList.setAdapter(adapter);
         addedItemsList.setAdapter(adapterItems);
 
@@ -104,22 +95,28 @@ public class MyPantry extends AppCompatActivity {
 
     }
 
-    protected InputStream readInTextFiles(){
+    protected String randomMethodBecauseICantFigureOutUnitTestForOtherOne(String value) {
+        String str = "hello";
+
+        return str += " " + value;
+    }
+
+    protected InputStream readInTextFiles() {
         InputStream inputStream = null;
         try {
-            inputStream = getAssets().open("dairy.txt");
+            inputStream = getResources().getAssets().open("meats.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
         return inputStream;
     }
 
-    protected void createIngredientDB(ArrayList<String> list) {
+    protected void createIngredientDB(ArrayList<String> list, InputStream inputStream) {
         InputStreamReader streamReader;
         BufferedReader input;
         String item = "";
         try {
-            streamReader = new InputStreamReader(readInTextFiles());
+            streamReader = new InputStreamReader(inputStream);
             input = new BufferedReader(streamReader);
             while ((item = input.readLine()) != null) {
                 list.add(item);
