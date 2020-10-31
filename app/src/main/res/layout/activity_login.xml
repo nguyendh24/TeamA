@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradients"
+    android:background="@drawable/gradient_1"
     android:layout_gravity="center"
     android:id="@+id/layout"
     tools:context=".LoginActivity"
