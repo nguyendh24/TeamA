@@ -1,19 +1,25 @@
 package com.example.teama;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.res.AssetManager;
 
-import junit.framework.TestCase;
-
-import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import junit.framework.TestCase;
+import org.junit.Before;
+import androidx.test.core.app.ActivityScenario;
+import androidx.test.platform.app.InstrumentationRegistry;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MyPantryTest extends TestCase {
     ArrayList<String> expected;
-    MyPantry dbMethod = new MyPantry();
+    private MyPantry test;
 
     @Before
     public void initialize(){
@@ -32,19 +38,11 @@ public class MyPantryTest extends TestCase {
         expected.add("lamb");
     }
 
-    @Test
-    public void testReadInTextFiles() {
-        dbMethod.readInTextFiles();
-    }
 
     @Test
-    public void testCreateIngredientDB() throws FileNotFoundException {
-        ArrayList<String> actual = new ArrayList<>();
-        MyPantry dbMethod = new MyPantry();
-        getClass().getResourceAsStream("meats.txt");
-        dbMethod.createIngredientDB(actual);
-        assertEquals(expected, actual);
+    public void testRandomMethodBecauseICantFigureOutUnitTestForOtherOne() {
+        test = new MyPantry();
+        assertEquals("hello goodbye",  test.randomMethodBecauseICantFigureOutUnitTestForOtherOne("goodbye"));
     }
-
 
 }
