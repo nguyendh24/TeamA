@@ -5,19 +5,15 @@
     android:layout_height="match_parent"
     android:weightSum="100">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="33.3">
 
-        <TextView
-            android:gravity="center"
-            android:text="TextView1"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/textView"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/itemInPantry"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="100"
+        android:text="item_1"
+        android:textAlignment="viewEnd"
+        android:textSize="16sp" />
 
 
 </LinearLayout>
