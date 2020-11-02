@@ -31,8 +31,8 @@ public class MyPantry extends AppCompatActivity {
     Scanner input; //Global Scanner for reading in different .txt files
 
     private ListView addedItemsList; //will be user's current "on hand groceries"
-    ArrayList<String> itemsList;
-    ArrayAdapter<String> adapterItems;
+    ArrayList<Pantry_List> itemsList;
+    PantryAdapter adapterItems;
 
 
 
@@ -54,7 +54,7 @@ public class MyPantry extends AppCompatActivity {
         list = new ArrayList<>();
         itemsList = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list); //adapter takes in list; database
-        adapterItems = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemsList);
+        adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, itemsList);
 
         myList.setVisibility(View.GONE); //Only displays list when user clicks on search bar
         createIngredientDB(list, readInTextFiles());
@@ -89,7 +89,8 @@ public class MyPantry extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Object selectedItem = myList.getItemAtPosition(i);
                 svIngredients.onActionViewCollapsed();
-                itemsList.add(selectedItem.toString());
+                Pantry_List pantry_item = new Pantry_List(selectedItem.toString(),1);
+                itemsList.add(pantry_item);
             }
         });
 
