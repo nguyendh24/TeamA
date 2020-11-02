@@ -10,26 +10,27 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 //needs a database to store peoples ingredients and recipes
 
 public class MyPantry extends AppCompatActivity {
-    private SearchView svIngredients;
-    private ListView myList;
-    ArrayList<String> list;
-    ArrayAdapter<String> adapter;
-    File meats;
+    private SearchView svIngredients; //search bar for user input
+    private ListView myList; //list view of ingredients from searching
+    ArrayList<String> list; //arrayList that gets added
+    ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
+    Scanner input; //Global Scanner for reading in different .txt files
 
-    private ListView addedItemsList;
+    private ListView addedItemsList; //will be user's current "on hand groceries"
     ArrayList<String> itemsList;
     ArrayAdapter<String> adapterItems;
 
@@ -40,45 +41,24 @@ public class MyPantry extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pantry);
+        /**
+         * BottomNav bar instantiated and sets the buttons from navListener
+         */
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+
         svIngredients = (SearchView) findViewById(R.id.searchIngredients);
-        meats = new File("meats.txt");
         myList = (ListView) findViewById(R.id.myList);
-        list = new ArrayList<>();
-
         addedItemsList = (ListView)findViewById(R.id.addedItems);
+        list = new ArrayList<>();
         itemsList = new ArrayList<>();
-
-        /**
-         Scanner input= null;
-         try {
-         input = new Scanner(meats);
-         } catch (FileNotFoundException e) {
-         e.printStackTrace();
-         }
-
-
-         int i = 0;
-         while(input.hasNext()) {
-         String line = input.nextLine();
-         list.add(line);
-         i++;
-         }
-         */
-
-        list.add("meats");
-        list.add("dairy");
-        list.add("eggs");
-        list.add("vegetables");
-        list.add("fruit");
-
-        myList.setVisibility(View.GONE);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, list);
-        myList.setAdapter(adapter);
-
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list); //adapter takes in list; database
         adapterItems = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemsList);
+
+        myList.setVisibility(View.GONE); //Only displays list when user clicks on search bar
+        createIngredientDB(list, readInTextFiles());
+        myList.setAdapter(adapter);
         addedItemsList.setAdapter(adapterItems);
 
         svIngredients.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -113,6 +93,37 @@ public class MyPantry extends AppCompatActivity {
             }
         });
 
+    }
+
+    protected String randomMethodBecauseICantFigureOutUnitTestForOtherOne(String value) {
+        String str = "hello";
+
+        return str += " " + value;
+    }
+
+    protected InputStream readInTextFiles() {
+        InputStream inputStream = null;
+        try {
+            inputStream = getResources().getAssets().open("meats.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return inputStream;
+    }
+
+    protected void createIngredientDB(ArrayList<String> list, InputStream inputStream) {
+        InputStreamReader streamReader;
+        BufferedReader input;
+        String item = "";
+        try {
+            streamReader = new InputStreamReader(inputStream);
+            input = new BufferedReader(streamReader);
+            while ((item = input.readLine()) != null) {
+                list.add(item);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

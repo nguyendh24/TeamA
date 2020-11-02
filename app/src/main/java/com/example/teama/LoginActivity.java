@@ -45,8 +45,8 @@ public class LoginActivity extends AppCompatActivity  {
     private static final int RC_SIGN_IN = 0;
 
     //Animation layout
-    ConstraintLayout constraintLayout;
-    AnimationDrawable animationDrawable;
+    //ConstraintLayout constraintLayout;
+    //AnimationDrawable animationDrawable;
 
 
     @Override
@@ -55,11 +55,11 @@ public class LoginActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_login);
 
         //Animation layout instantiation
-        constraintLayout = findViewById(R.id.layout);
-        animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
-        animationDrawable.setEnterFadeDuration(2000);
-        animationDrawable.setExitFadeDuration(4000);
-        animationDrawable.start();
+        //constraintLayout = findViewById(R.id.layout);
+        //animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+        //animationDrawable.setEnterFadeDuration(2000);
+        //animationDrawable.setExitFadeDuration(4000);
+        //animationDrawable.start();
 
         eEmail = findViewById(R.id.editTextEmailAddress); //findViewById connects/binds to respective xml layout to variable
         ePassword = findViewById(R.id.editTextRegPW);
