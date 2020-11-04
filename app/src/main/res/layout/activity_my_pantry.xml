@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyPantry"
-    android:background = "@drawable/plain"
+    android:background = "@drawable/prettyappbackground"
     >
 
     <SearchView
@@ -71,10 +71,10 @@
         android:filterTouchesWhenObscured="false"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchIngredients"
-        app:layout_constraintVertical_bias="0.97" />
+        app:layout_constraintVertical_bias="0.626" />
 
     <TextView
         android:id="@+id/Pantry"
@@ -87,7 +87,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/addedItems"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myList"
         app:layout_constraintVertical_bias="1.0" />
