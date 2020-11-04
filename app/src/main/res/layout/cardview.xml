@@ -24,12 +24,12 @@
             android:scaleType="centerCrop"
             />
         <TextView
-            android:id="@+id/recipe_text"
+            android:id="@+id/diet_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="diet_name"
-            android:textSize="13sp"
+            android:textSize="15sp"
             android:textColor="#2d2d2d"
             />
     </LinearLayout>

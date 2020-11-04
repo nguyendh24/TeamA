@@ -6,7 +6,6 @@ package com.example.teama;
  */
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,7 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -44,23 +42,12 @@ public class LoginActivity extends AppCompatActivity  {
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 0;
 
-    //Animation layout
-    //ConstraintLayout constraintLayout;
-    //AnimationDrawable animationDrawable;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //Animation layout instantiation
-        //constraintLayout = findViewById(R.id.layout);
-        //animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
-        //animationDrawable.setEnterFadeDuration(2000);
-        //animationDrawable.setExitFadeDuration(4000);
-        //animationDrawable.start();
-
+        //instantiate
         eEmail = findViewById(R.id.editTextEmailAddress); //findViewById connects/binds to respective xml layout to variable
         ePassword = findViewById(R.id.editTextRegPW);
         eAttempts = findViewById(R.id.textViewAttempts);
