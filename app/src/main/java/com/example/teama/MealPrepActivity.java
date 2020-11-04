@@ -11,6 +11,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MealPrepActivity extends AppCompatActivity {
     private CalendarView calendar;
 
+
+
     //needs to get api call for google calendar or calendar that allows adding events etc
 
     @Override
@@ -21,6 +23,9 @@ public class MealPrepActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         calendar = findViewById(R.id.calendarView);
+
+
+
 
     }
 

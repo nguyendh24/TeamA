@@ -18,4 +18,31 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="checkbox">CheckBox</string>
     <string name="profile">Profile</string>
+    <string name="_12am">12am</string>
+    <string name="_1am">1am</string>
+    <string name="_2am">2am</string>
+    <string name="_3am">3am</string>
+    <string name="_4am">4am</string>
+    <string name="_5am">5am</string>
+    <string name="_6am">6am</string>
+    <string name="_7am">7am</string>
+    <string name="_8am">8am</string>
+    <string name="_9am">9am</string>
+    <string name="_10am">10am</string>
+    <string name="_11am">11am</string>
+    <string name="_12pm">12pm</string>
+    <string name="_1pm">1pm</string>
+    <string name="_2pm">2pm</string>
+    <string name="_3pm">3pm</string>
+    <string name="_4pm">4pm</string>
+    <string name="_5pm">5pm</string>
+    <string name="_6pm">6pm</string>
+    <string name="_7pm">7pm</string>
+    <string name="_8pm">8pm</string>
+    <string name="_9pm">9pm</string>
+    <string name="_10pm">10pm</string>
+    <string name="_11pm">11pm</string>
+    <string name="updating" />
+
+
 </resources>
