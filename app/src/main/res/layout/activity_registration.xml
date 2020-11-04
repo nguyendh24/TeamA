@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistrationActivity"
-    android:background="@drawable/gradient_1"
-    >
+    android:background="@drawable/plain"
+    tools:context=".RegistrationActivity">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -28,7 +27,7 @@
         android:layout_height="42dp"
         android:fontFamily="sans-serif-light"
         android:text="Create Account"
-        android:textColor="#FFFFFF"
+        android:textColor="#452008"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,8 +100,8 @@
         android:ems="10"
         android:hint="Re-enter password"
         android:inputType="textPassword"
-        android:paddingLeft="2dp"
         android:orientation="horizontal"
+        android:paddingLeft="2dp"
         app:fontFamily="sans-serif"
         app:layout_constraintBottom_toTopOf="@+id/buttonSignUp"
         app:layout_constraintEnd_toEndOf="parent"
