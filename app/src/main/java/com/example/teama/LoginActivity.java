@@ -6,6 +6,7 @@ package com.example.teama;
  */
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -22,7 +24,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginActivity extends AppCompatActivity  {
@@ -37,6 +43,8 @@ public class LoginActivity extends AppCompatActivity  {
     private Button eLogin;
     private TextView eNewUser;
     private int counter = 5;
+    FirebaseAuth mAuth;
+    private String TAG;
 
     SignInButton signIn;
     private GoogleSignInClient mGoogleSignInClient;
@@ -46,7 +54,7 @@ public class LoginActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        mAuth = FirebaseAuth.getInstance();
         //instantiate
         eEmail = findViewById(R.id.editTextEmailAddress); //findViewById connects/binds to respective xml layout to variable
         ePassword = findViewById(R.id.editTextRegPW);
@@ -89,7 +97,6 @@ public class LoginActivity extends AppCompatActivity  {
                 String inputEmail = eEmail.getText().toString(); //need toString to convert eEmail
                 String inputPW = ePassword.getText().toString();
                 //admin(inputEmail, inputPW);
-
                 if (inputEmail.equalsIgnoreCase("admin") && inputPW.equalsIgnoreCase("123")) {
                     setContentView(R.layout.activity_main);
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
