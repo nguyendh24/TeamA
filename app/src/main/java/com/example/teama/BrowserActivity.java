@@ -3,37 +3,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class BrowserActivity extends AppCompatActivity {
     private WebView webView;
+    private String webURL;
+    private Button bNext;
+    private ArrayList<String> urlList;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_browser);
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
-
-        webView = (WebView) findViewById(R.id.webView);
-        webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://www.bonappetit.com/recipe/double-garlic-roast-chicken-with-onion-gravy");
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack();
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-            private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(MenuItem item) {
@@ -56,4 +41,42 @@ public class BrowserActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_browser);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        bNext = findViewById(R.id.button_next);
+
+        Intent intent = getIntent();
+        webURL = intent.getExtras().getString("result");
+        urlList = (ArrayList<String>) getIntent().getSerializableExtra("urlList");
+        webView = (WebView) findViewById(R.id.webView);
+        webView.setWebViewClient(new WebViewClient());
+
+        if (webURL.equals("")) {
+            webURL = "google.com";
+        }
+        webView.loadUrl("" + webURL);
+
+        bNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                webURL = urlList.get((int)(Math.random() * urlList.size()));
+                webView.loadUrl("" + webURL);
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

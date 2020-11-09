@@ -26,8 +26,8 @@ import java.util.Scanner;
 public class MyPantry extends AppCompatActivity {
     private SearchView svIngredients; //search bar for user input
     private ListView myList; //list view of ingredients from searching
-    ArrayList<String> list; //arrayList that gets added
-    ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
+    private ArrayList<String> list; //arrayList that gets added
+    private ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
     Scanner input; //Global Scanner for reading in different .txt files
     private ListView addedItemsList; //will be user's current "on hand groceries"
     ArrayList<Pantry_List> itemsList;
@@ -45,11 +45,10 @@ public class MyPantry extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
          //Only displays list when user clicks on search bar
-        initializeArrList();
-        initializeViews();
-        initializeAdapter();
-        createIngredientDB(list, readInTextFiles());
-        setAdapters();
+        buildSearchList();
+        buildGroceryList();
+        createIngredientDB(list);
+
 
         svIngredients.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -83,34 +82,23 @@ public class MyPantry extends AppCompatActivity {
         });
     }
 
-    private void initializeArrList() {
+    private void buildSearchList() {
         list = new ArrayList<>();
-        itemsList = new ArrayList<>();
-    }
-
-    private void initializeViews() {
-        svIngredients = (SearchView) findViewById(R.id.searchIngredients);
-        addedItemsList = (ListView)findViewById(R.id.addedItems);
         myList = (ListView) findViewById(R.id.myList);
-    }
-
-    private void initializeAdapter() {
+        svIngredients = (SearchView) findViewById(R.id.searchIngredients);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list); //adapter takes in list; database
-        adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, itemsList);
+        myList.setAdapter(adapter);
     }
 
-    private void setAdapters() {
-        myList.setAdapter(adapter);
+    private void buildGroceryList() {
+        itemsList = new ArrayList<>();
+        addedItemsList = (ListView)findViewById(R.id.addedItems);
+        adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, itemsList);
         addedItemsList.setAdapter(adapterItems);
     }
 
-    protected String randomMethodBecauseICantFigureOutUnitTestForOtherOne(String value) {
-        String str = "hello";
 
-        return str += " " + value;
-    }
-
-    protected InputStream readInTextFiles() {
+    private InputStream readInTextFiles() {
         InputStream inputStream = null;
         try {
             inputStream = getResources().getAssets().open("meats.txt");
@@ -120,12 +108,12 @@ public class MyPantry extends AppCompatActivity {
         return inputStream;
     }
 
-    protected void createIngredientDB(ArrayList<String> list, InputStream inputStream) {
+    private void createIngredientDB(ArrayList<String> list) {
         InputStreamReader streamReader;
         BufferedReader input;
         String item = "";
         try {
-            streamReader = new InputStreamReader(inputStream);
+            streamReader = new InputStreamReader(readInTextFiles());
             input = new BufferedReader(streamReader);
             while ((item = input.readLine()) != null) {
                 list.add(item);
