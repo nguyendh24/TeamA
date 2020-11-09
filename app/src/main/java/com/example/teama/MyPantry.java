@@ -44,11 +44,11 @@ public class MyPantry extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        myList.setVisibility(View.GONE); //Only displays list when user clicks on search bar
-        createIngredientDB(list, readInTextFiles());
+         //Only displays list when user clicks on search bar
         initializeArrList();
         initializeViews();
         initializeAdapter();
+        createIngredientDB(list, readInTextFiles());
         setAdapters();
 
         svIngredients.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

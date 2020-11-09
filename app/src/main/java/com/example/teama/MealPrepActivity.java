@@ -5,16 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.CalendarView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MealPrepActivity extends AppCompatActivity {
     private CalendarView calendar;
 
-
-
     //needs to get api call for google calendar or calendar that allows adding events etc
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
