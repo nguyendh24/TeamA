@@ -64,11 +64,5 @@ public class MyPantryTest extends TestCase {
         itemTest = new Pantry_List("apple", 2);
         assertNotSame(String.format("%-25s %s%d", "orange","x ", 2), itemTest.toString());
     }
-
-    @Test
-    public void testRandomMethodBecauseICantFigureOutUnitTestForOtherOne() {
-        test = new MyPantry();
-        assertEquals("hello goodbye",  test.randomMethodBecauseICantFigureOutUnitTestForOtherOne("goodbye"));
-    }
-
+    
 }
