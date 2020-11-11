@@ -6,6 +6,8 @@ package com.example.teama;
  */
 
 import android.content.Intent;
+import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,8 +15,11 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -22,10 +27,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 
-public class LoginActivity extends AppCompatActivity  {
+public class LoginActivity extends AppCompatActivity {
 
     /**
      * Defining all the elements of layout
@@ -37,6 +48,9 @@ public class LoginActivity extends AppCompatActivity  {
     private Button eLogin;
     private TextView eNewUser;
     private int counter = 5;
+    private String TAG;
+    ProgressBar progressBar;
+    FirebaseAuth fAuth;
 
     SignInButton signIn;
     private GoogleSignInClient mGoogleSignInClient;
@@ -44,15 +58,18 @@ public class LoginActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         //instantiate
         eEmail = findViewById(R.id.editTextEmailAddress); //findViewById connects/binds to respective xml layout to variable
         ePassword = findViewById(R.id.editTextRegPW);
         eAttempts = findViewById(R.id.textViewAttempts);
         eLogin = findViewById(R.id.buttonLogin);
         eNewUser = findViewById(R.id.textViewSignUp);
+        fAuth = FirebaseAuth.getInstance();
+
 
 
         // Configure sign-in to request the user's ID, email address, and basic
@@ -86,58 +103,43 @@ public class LoginActivity extends AppCompatActivity  {
         eLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String inputEmail = eEmail.getText().toString(); //need toString to convert eEmail
                 String inputPW = ePassword.getText().toString();
-                //admin(inputEmail, inputPW);
 
-                if (inputEmail.equalsIgnoreCase("admin") && inputPW.equalsIgnoreCase("123")) {
-                    setContentView(R.layout.activity_main);
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                } else if (inputEmail.isEmpty() || inputPW.isEmpty()) { //valid input
-                    Toast.makeText(LoginActivity.this, "invalid input ",Toast.LENGTH_SHORT).show();
-                } else {
-                    if (!isValidEmail(inputEmail)) {
-                        counter--;
-                        eAttempts.setText("# of attempts remaining: " + counter);
-                        Toast.makeText(LoginActivity.this, "invalid email *", Toast.LENGTH_SHORT).show();
-                        if (counter == 0)
-                            eLogin.setEnabled(false); //if user exceed login attempts button will be disabled
-                    } else {
-                        //checks database to see if username is there and is correct
-                        boolean validUser;
-                        try{
-                             validUser = loginDb.validLogin(inputEmail,inputPW);
-                        }catch (Exception e) {
-                             validUser = false;
-                        }
-                        if(validUser) {
-                            Toast.makeText(LoginActivity.this, "Login success! ", Toast.LENGTH_SHORT).show();
-                            //sends user to the main activity page
-                            // Button loginbtn = (Button)findViewById(R.id.buttonLogin);
-                            eLogin.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                }
-                            });
-                            //if incorrect it shows a message and makes counter -1
-                            //when counter ==0 it will disable users account.
-                        }else
-                            Toast.makeText(LoginActivity.this,"Incorrect email or Password",Toast.LENGTH_LONG).show();
-                            counter--;
-                            if (counter == 0){
-                                eLogin.setEnabled(false);
-                                Toast.makeText(LoginActivity.this,"Your account has been disabled",Toast.LENGTH_LONG).show();
-                            }
-
-                    }
+                if(TextUtils.isEmpty(inputEmail)){
+                    eEmail.setError("Email is required.");
                 }
+
+                if(TextUtils.isEmpty(inputPW)){
+                    ePassword.setError("Password is required.");
+
+                }
+
+                if(inputPW.length() < 6){
+                    ePassword.setError("Password must be at least 6 characters.");
+                }
+
+                //authenticate the user
+                fAuth.signInWithEmailAndPassword(inputEmail,inputPW).addOnCompleteListener(new OnCompleteListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(LoginActivity.this, "Login in complete", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        }else {
+                            Toast.makeText(LoginActivity.this,"Error! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
     }
 
     /**
      * Validating appropriate Email -- using Patterns &TextUtil
+     *
      * @param target
      * @return
      */
@@ -195,10 +197,14 @@ public class LoginActivity extends AppCompatActivity  {
     protected void onStart() {
         super.onStart();
 
+        // updateUI(currentUser);
+
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         //updateUI(account); **create intent to second activity!!
     }
-
 }
+
+
+
