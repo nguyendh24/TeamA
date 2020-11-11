@@ -69,20 +69,19 @@
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_gravity="start"
             android:background="?android:attr/windowBackground"
             app:itemHorizontalTranslationEnabled="false"
-            app:labelVisibilityMode="unlabeled"
             app:itemIconTint="@android:color/darker_gray"
             app:itemTextColor="@android:color/darker_gray"
+            app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            app:menu="@menu/bottom_nav"
-            android:layout_gravity="start"
-            />
+            app:menu="@menu/bottom_nav" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -96,7 +95,14 @@
         app:layout_constraintEnd_toStartOf="@+id/layoutToolBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        >
+
+        <Button
+            android:id="@+id/LogoutButton"
+            android:layout_width="127dp"
+            android:layout_height="56dp"
+            android:text="Logout" />
+    </com.google.android.material.navigation.NavigationView>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

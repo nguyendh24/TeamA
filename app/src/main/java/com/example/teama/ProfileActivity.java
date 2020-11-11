@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -31,6 +32,12 @@ public class ProfileActivity extends AppCompatActivity {
         });
         NavigationView navigationView = findViewById(R.id.drawer_nav);
         navigationView.setItemIconTintList(null);
+    }
+
+    public void logout (View view){
+        FirebaseAuth.getInstance().signOut(); //logs out the user
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //sends to login activity
+        finish();
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
