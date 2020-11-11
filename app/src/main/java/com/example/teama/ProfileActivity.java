@@ -19,14 +19,14 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        final DrawerLayout drawerLayout = findViewById(R.id.Constraint);
+        final DrawerLayout DRAWER_LAYOUT = findViewById(R.id.Constraint);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
+                DRAWER_LAYOUT.openDrawer(GravityCompat.START);
             }
         });
         NavigationView navigationView = findViewById(R.id.drawer_nav);
