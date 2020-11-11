@@ -33,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.drawer_nav);
         navigationView.setItemIconTintList(null);
     }
-
+    //here to sign out user. Not sure if this is working correctly or not
     public void logout (View view){
         FirebaseAuth.getInstance().signOut(); //logs out the user
         startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //sends to login activity
