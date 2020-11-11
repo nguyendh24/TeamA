@@ -29,12 +29,9 @@ public class MyPantry extends AppCompatActivity {
     ArrayList<String> list; //arrayList that gets added
     ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
     Scanner input; //Global Scanner for reading in different .txt files
-
     private ListView addedItemsList; //will be user's current "on hand groceries"
     ArrayList<Pantry_List> itemsList;
     PantryAdapter adapterItems;
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -47,19 +44,12 @@ public class MyPantry extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-
-        svIngredients = (SearchView) findViewById(R.id.searchIngredients);
-        myList = (ListView) findViewById(R.id.myList);
-        addedItemsList = (ListView)findViewById(R.id.addedItems);
-        list = new ArrayList<>();
-        itemsList = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list); //adapter takes in list; database
-        adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, itemsList);
-
-        myList.setVisibility(View.GONE); //Only displays list when user clicks on search bar
+         //Only displays list when user clicks on search bar
+        initializeArrList();
+        initializeViews();
+        initializeAdapter();
         createIngredientDB(list, readInTextFiles());
-        myList.setAdapter(adapter);
-        addedItemsList.setAdapter(adapterItems);
+        setAdapters();
 
         svIngredients.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -82,8 +72,6 @@ public class MyPantry extends AppCompatActivity {
             }
         });
 
-
-
         myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -93,7 +81,27 @@ public class MyPantry extends AppCompatActivity {
                 itemsList.add(pantry_item);
             }
         });
+    }
 
+    private void initializeArrList() {
+        list = new ArrayList<>();
+        itemsList = new ArrayList<>();
+    }
+
+    private void initializeViews() {
+        svIngredients = (SearchView) findViewById(R.id.searchIngredients);
+        addedItemsList = (ListView)findViewById(R.id.addedItems);
+        myList = (ListView) findViewById(R.id.myList);
+    }
+
+    private void initializeAdapter() {
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list); //adapter takes in list; database
+        adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, itemsList);
+    }
+
+    private void setAdapters() {
+        myList.setAdapter(adapter);
+        addedItemsList.setAdapter(adapterItems);
     }
 
     protected String randomMethodBecauseICantFigureOutUnitTestForOtherOne(String value) {
