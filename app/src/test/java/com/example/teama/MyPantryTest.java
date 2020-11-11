@@ -18,41 +18,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MyPantryTest extends TestCase {
-    Context MockContext;
-    //ArrayList<String> expected;
     private MyPantry test;
     private Pantry_List itemTest;
-    /**
-    @Before
-    public void initialize() {
-        expected = new ArrayList<>();
-        expected.add("chicken");
-        expected.add("ground chicken");
-        expected.add("beef");
-        expected.add("ground beef");
-        expected.add("ham");
-        expected.add("pork");
-        expected.add("ground pork");
-        expected.add("turkey");
-        expected.add("ground turkey");
-        expected.add("bacon");
-        expected.add("sausage");
-        expected.add("lamb");
-    }
-    @Test
-    public void testReadInTextFiles() {
-        test = new MyPantry();
-        test.readInTextFiles();
-    }
 
-    @Test
-    public void testCreateIngredientDB() throws FileNotFoundException {
-        test = new MyPantry();
-        ArrayList<String> actual = new ArrayList<>();
-        test.createIngredientDB(actual, test.readInTextFiles());
-        assertEquals(expected, actual);
-    }
-     */
     @Test
     public void testToString_true() {
         itemTest = new Pantry_List("apple", 2);
