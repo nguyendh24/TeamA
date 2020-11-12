@@ -51,6 +51,11 @@
     <string name="border_circle">border_circle</string>
     <string name="border">border</string>
     <string name="pantry_plan">Pantry Plan</string>
+    <string name="existing_user_sign_in_here">Exsisting user? Sign In here</string>
+    <string name="sign_up">Sign-up</string>
+    <string name="re_enter_password">Re-enter password</string>
+    <string name="enter_in_your_name">Enter in your Name</string>
+    <string name="create_account">Create Account</string>
 
 
 </resources>
