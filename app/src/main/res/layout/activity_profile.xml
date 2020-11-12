@@ -98,7 +98,7 @@
         >
 
         <Button
-            android:id="@+id/LogoutButton"
+            android:id="@+id/signOut"
             android:layout_width="127dp"
             android:layout_height="56dp"
             android:text="Logout" />
