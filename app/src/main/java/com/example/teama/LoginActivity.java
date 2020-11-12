@@ -107,15 +107,22 @@ public class LoginActivity extends AppCompatActivity {
                 String inputEmail = eEmail.getText().toString(); //need toString to convert eEmail
                 String inputPW = ePassword.getText().toString();
 
+                //admin login
+                if(inputEmail.equalsIgnoreCase("admin") && inputPW.equalsIgnoreCase("123")){
+                    //setContentView(R.layout.activity_main);
+                    Toast.makeText(LoginActivity.this,"Admin login",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }
+                //if no email
                 if(TextUtils.isEmpty(inputEmail)){
                     eEmail.setError("Email is required.");
                 }
-
+                //if no password
                 if(TextUtils.isEmpty(inputPW)){
                     ePassword.setError("Password is required.");
 
                 }
-
+                //if password isn't long enough
                 if(inputPW.length() < 6){
                     ePassword.setError("Password must be at least 6 characters.");
                 }
@@ -147,13 +154,6 @@ public class LoginActivity extends AppCompatActivity {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
-    private void admin(String admin, String adminPW) {
-        if (admin.equalsIgnoreCase("admin") && adminPW.equalsIgnoreCase("123")) {
-            setContentView(R.layout.activity_main);
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-        }
-
-    }
 
     /**
      * Google stuff
