@@ -3,6 +3,7 @@ package com.example.teama;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegistrationActivity extends AppCompatActivity {
     EditText eRegEmail, eCreatePassword, eCheckPassword, eName;
     Button eSignUp;
-    TextView mLoginBtn;
+    TextView mLoginBtn, existingUser;
     FirebaseAuth fAuth;
 
     protected void onCreate(Bundle savedInstanceData){
@@ -31,6 +32,7 @@ public class RegistrationActivity extends AppCompatActivity {
         eCreatePassword = findViewById(R.id.editTextRegPW);
         eCheckPassword = findViewById(R.id.editTextRegPW2);
         eSignUp = findViewById(R.id.buttonSignUp);
+        existingUser = findViewById(R.id.existingUserLink);
 
         fAuth = FirebaseAuth.getInstance();
 
@@ -38,6 +40,12 @@ public class RegistrationActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
+        //sends back to login if they already have an account
+        existingUser.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            }
+        });
 
         eSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

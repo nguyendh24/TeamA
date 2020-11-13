@@ -39,8 +39,9 @@
         android:layout_width="203dp"
         android:layout_height="36dp"
         android:layout_marginTop="40dp"
-        android:text="Save Dates to create plans"
+        android:text="@string/save_dates_to_create_plans"
         android:textAlignment="center"
+        android:textColor="#009688"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
@@ -53,6 +54,7 @@
 
 
     <ListView
+        android:id="@+id/ListAdd"
         android:layout_width="305dp"
         android:layout_height="174dp"
         app:layout_constraintBottom_toBottomOf="parent"

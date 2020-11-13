@@ -6,22 +6,46 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileActivity extends AppCompatActivity {
+    private Button logoutButton;
+    private TextView profileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         final DrawerLayout DRAWER_LAYOUT = findViewById(R.id.Constraint);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+        logoutButton = findViewById(R.id.signOut);
+        profileName = findViewById(R.id.textView6);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String name = "";
+        String email;
+        Uri photoUri;
+        //grabbing users information
+        if (user != null){
+            name = user.getDisplayName();
+             email = user.getEmail();
+             photoUri = user.getPhotoUrl();
+            //check if users email is verified
+            boolean emailVerified = user.isEmailVerified();
+            String uid = user.getUid();
+        }
 
         findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +55,14 @@ public class ProfileActivity extends AppCompatActivity {
         });
         NavigationView navigationView = findViewById(R.id.drawer_nav);
         navigationView.setItemIconTintList(null);
+        logoutButton.setOnClickListener(new Button.OnClickListener() {
+            //logout button
+            public void onClick(View v){
+                FirebaseAuth.getInstance().signOut(); //logs out the user
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //sends to login activity
+                finish();
+            }
+        });
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
