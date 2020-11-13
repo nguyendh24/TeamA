@@ -42,7 +42,7 @@ public class MyPantry extends AppCompatActivity {
                             startActivity(new Intent(MyPantry.this, MainActivity.class));
                             break;
                         case R.id.nav_MealPrep:
-                            startActivity(new Intent(MyPantry.this, MealPrepActivity.class));
+                            startActivity(new Intent(MyPantry.this, BoardActivity.class));
                             break;
                         case R.id.nav_Browser:
                             startActivity(new Intent(MyPantry.this, BrowserActivity.class));

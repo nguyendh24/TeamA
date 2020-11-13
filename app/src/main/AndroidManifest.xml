@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".BrowserActivity" />
-        <activity android:name=".MealPrepActivity" />
+        <activity android:name=".BoardActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MyPantry"
             android:windowSoftInputMode="stateHidden|adjustPan"/>

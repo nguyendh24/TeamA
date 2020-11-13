@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private final String[] file_names = {"chicken", "keto", "pescatarian", "vegetarian", "glutenfree"};
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private RecyclerAdapter adapter;
+    private MainAdapter adapter;
     private ArrayList<String> mList;
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_Main:
                             break;
                         case R.id.nav_MealPrep:
-                            startActivity(new Intent(MainActivity.this, MealPrepActivity.class));
+                            startActivity(new Intent(MainActivity.this, BoardActivity.class));
                             break;
                         case R.id.nav_Browser:
                             startActivity(new Intent(MainActivity.this, BrowserActivity.class));
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializeValues() {
         mRecyclerView = findViewById(R.id.recycle_images);
         mLayoutManager = new LinearLayoutManager(this);
-        adapter = new RecyclerAdapter(mImages);
+        adapter = new MainAdapter(mImages);
     }
 
     private void buildRecyclerView() {
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(adapter);
         /* */
-        adapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new MainAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 mImages.get(position);

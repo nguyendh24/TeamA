@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/prettyappbackground"
-    tools:context=".MealPrepActivity">
+    android:background="@drawable/cuttingboard"
+    tools:context=".BoardActivity">
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,46 +23,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav" />
 
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="370dp"
-        android:layout_height="299dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211" />
-
     <TextView
         android:id="@+id/textView"
-        android:layout_width="203dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/save_dates_to_create_plans"
-        android:textAlignment="center"
-        android:textColor="#009688"
-        android:textSize="14sp"
+        android:layout_width="124dp"
+        android:layout_height="56dp"
+        android:fontFamily="@font/bad_script"
+        android:text="My Board"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.029" />
 
-
-
-    <ListView
-        android:id="@+id/ListAdd"
-        android:layout_width="305dp"
-        android:layout_height="174dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_recipe"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.641"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.828" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

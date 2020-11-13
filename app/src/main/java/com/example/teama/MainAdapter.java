@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ImageHolder> {
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ImageHolder> {
 
     private List<Integer> images;
     private String[] titles = {"Chicken", "Keto", "Pescatarian", "Vegetarian", "Gluten-Free"};
@@ -25,14 +25,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ImageH
         mListener = listener;
     }
 
-    public RecyclerAdapter(List<Integer> images) {
+    public MainAdapter(List<Integer> images) {
         this.images = images;
     }
 
     @NonNull
     @Override
     public ImageHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_main, parent, false);
         ImageHolder imageHolder = new ImageHolder(view, mListener);
         return imageHolder;
     }

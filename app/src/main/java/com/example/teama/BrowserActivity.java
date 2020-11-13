@@ -27,7 +27,7 @@ public class BrowserActivity extends AppCompatActivity {
                             startActivity(new Intent(BrowserActivity.this, MainActivity.class));
                             break;
                         case R.id.nav_MealPrep:
-                            startActivity(new Intent(BrowserActivity.this, MealPrepActivity.class));
+                            startActivity(new Intent(BrowserActivity.this, BoardActivity.class));
                             break;
                         case R.id.nav_Browser:
                             break;
