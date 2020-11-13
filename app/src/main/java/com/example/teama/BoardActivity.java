@@ -19,6 +19,7 @@ public class BoardActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager bLayoutManager;
     private BoardAdapter adapter;
     private final List<Integer> veg_img = new ArrayList<>(Arrays.asList(R.drawable.veg0, R.drawable.veg1, R.drawable.veg2, R.drawable.veg3, R.drawable.veg4));
+    private final List<Integer> chick_img = new ArrayList<>(Arrays.asList(R.drawable.chick0, R.drawable.chick1, R.drawable.chick2, R.drawable.chick3, R.drawable.chick4, R.drawable.chick5));
 
     private static List<Board_Gallery> bImages = new ArrayList<>();
 
@@ -47,7 +48,7 @@ public class BoardActivity extends AppCompatActivity {
         }
 
 
-        bImages.add(new Board_Gallery(String.valueOf(index), URL, veg_img.get(index)));
+        bImages.add(new Board_Gallery(String.valueOf(index), URL, chick_img.get(index)));
 
         initializeValues();
         bRecyclerView.setHasFixedSize(true);

@@ -57,7 +57,7 @@
         app:menu="@menu/bottom_nav" />
 
     <ListView
-        android:id="@+id/addedItems"
+        android:id="@+id/checkable_added_items"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -68,6 +68,7 @@
         android:fadeScrollbars="true"
         android:fastScrollEnabled="true"
         android:filterTouchesWhenObscured="false"
+        android:paddingTop="70dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

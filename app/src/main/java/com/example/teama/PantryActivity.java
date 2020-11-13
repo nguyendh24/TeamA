@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,9 +29,9 @@ public class PantryActivity extends AppCompatActivity {
     private SearchView svIngredients; //search bar for user input
     private ListView myList, addedItemsList;
     private ArrayList<String> list; //arrayList that gets added
-    private ArrayList<Pantry_List> itemsList;
-    private ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
-    private PantryAdapter adapterItems;
+    private static ArrayList<Pantry_List> itemsList;
+    private static ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
+    private static PantryAdapter adapterItems;
     private Scanner input; //Global Scanner for reading in different .txt files
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -91,9 +93,17 @@ public class PantryActivity extends AppCompatActivity {
 
     private void buildGroceryList() {
         itemsList = new ArrayList<>();
-        addedItemsList = (ListView)findViewById(R.id.addedItems);
+        addedItemsList = (ListView)findViewById(R.id.checkable_added_items);
+        addedItemsList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, itemsList);
         addedItemsList.setAdapter(adapterItems);
+
+        addedItemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                addedItemsList.setItemChecked(i,true);
+            }
+        });
     }
 
     private InputStream readInTextFiles() {
