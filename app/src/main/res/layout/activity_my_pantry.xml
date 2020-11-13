@@ -58,10 +58,9 @@
 
     <ListView
         android:id="@+id/addedItems"
-        android:layout_width="255dp"
-        android:layout_height="273dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/notepad"
         android:divider="@android:color/transparent"
         android:drawSelectorOnTop="true"
@@ -71,25 +70,23 @@
         android:filterTouchesWhenObscured="false"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchIngredients"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintTop_toBottomOf="@+id/searchIngredients" />
 
     <TextView
         android:id="@+id/Pantry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginBottom="20dp"
-        android:text="My Pantry"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/addedItems"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bad_script"
+        android:text="My Grocery List"
+        android:textColor="#3E3E3E"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myList"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/myList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
