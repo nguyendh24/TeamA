@@ -28,7 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        final DrawerLayout drawerLayout = findViewById(R.id.Constraint);
+        final DrawerLayout DRAWER_LAYOUT = findViewById(R.id.Constraint);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         logoutButton = findViewById(R.id.signOut);
@@ -50,7 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
         findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
+                DRAWER_LAYOUT.openDrawer(GravityCompat.START);
             }
         });
         NavigationView navigationView = findViewById(R.id.drawer_nav);
@@ -73,13 +73,13 @@ public class ProfileActivity extends AppCompatActivity {
                             startActivity(new Intent(ProfileActivity.this, MainActivity.class));
                             break;
                         case R.id.nav_MealPrep:
-                            startActivity(new Intent(ProfileActivity.this, MealPrepActivity.class));
+                            startActivity(new Intent(ProfileActivity.this, BoardActivity.class));
                             break;
                         case R.id.nav_Browser:
                             startActivity(new Intent(ProfileActivity.this, BrowserActivity.class));
                             break;
                         case R.id.nav_Pantry:
-                            startActivity(new Intent(ProfileActivity.this, MyPantry.class));
+                            startActivity(new Intent(ProfileActivity.this, PantryActivity.class));
                             break;
                         case R.id.nav_Profile:
                             break;

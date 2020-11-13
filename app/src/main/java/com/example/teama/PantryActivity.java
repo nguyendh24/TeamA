@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,15 +25,14 @@ import java.util.Scanner;
 
 //needs a database to store peoples ingredients and recipes
 
-public class MyPantry extends AppCompatActivity {
+public class PantryActivity extends AppCompatActivity {
     private SearchView svIngredients; //search bar for user input
-    private ListView myList; //list view of ingredients from searching
-    ArrayList<String> list; //arrayList that gets added
-    ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
-    Scanner input; //Global Scanner for reading in different .txt files
-    private ListView addedItemsList; //will be user's current "on hand groceries"
-    ArrayList<Pantry_List> itemsList;
-    PantryAdapter adapterItems;
+    private ListView myList, addedItemsList;
+    private ArrayList<String> list; //arrayList that gets added
+    private static ArrayList<Pantry_List> itemsList;
+    private static ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
+    private static PantryAdapter adapterItems;
+    private Scanner input; //Global Scanner for reading in different .txt files
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -45,11 +46,10 @@ public class MyPantry extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
          //Only displays list when user clicks on search bar
-        initializeArrList();
-        initializeViews();
-        initializeAdapter();
-        createIngredientDB(list, readInTextFiles());
-        setAdapters();
+        buildSearchList();
+        buildGroceryList();
+        createIngredientDB(list);
+
 
         svIngredients.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -83,34 +83,30 @@ public class MyPantry extends AppCompatActivity {
         });
     }
 
-    private void initializeArrList() {
+    private void buildSearchList() {
         list = new ArrayList<>();
-        itemsList = new ArrayList<>();
-    }
-
-    private void initializeViews() {
-        svIngredients = (SearchView) findViewById(R.id.searchIngredients);
-        addedItemsList = (ListView)findViewById(R.id.addedItems);
         myList = (ListView) findViewById(R.id.myList);
-    }
-
-    private void initializeAdapter() {
+        svIngredients = (SearchView) findViewById(R.id.searchIngredients);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list); //adapter takes in list; database
-        adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, itemsList);
-    }
-
-    private void setAdapters() {
         myList.setAdapter(adapter);
+    }
+
+    private void buildGroceryList() {
+        itemsList = new ArrayList<>();
+        addedItemsList = (ListView)findViewById(R.id.checkable_added_items);
+        addedItemsList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, itemsList);
         addedItemsList.setAdapter(adapterItems);
+
+        addedItemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                addedItemsList.setItemChecked(i,true);
+            }
+        });
     }
 
-    protected String randomMethodBecauseICantFigureOutUnitTestForOtherOne(String value) {
-        String str = "hello";
-
-        return str += " " + value;
-    }
-
-    protected InputStream readInTextFiles() {
+    private InputStream readInTextFiles() {
         InputStream inputStream = null;
         try {
             inputStream = getResources().getAssets().open("meats.txt");
@@ -120,12 +116,12 @@ public class MyPantry extends AppCompatActivity {
         return inputStream;
     }
 
-    protected void createIngredientDB(ArrayList<String> list, InputStream inputStream) {
+    private void createIngredientDB(ArrayList<String> list) {
         InputStreamReader streamReader;
         BufferedReader input;
         String item = "";
         try {
-            streamReader = new InputStreamReader(inputStream);
+            streamReader = new InputStreamReader(readInTextFiles());
             input = new BufferedReader(streamReader);
             while ((item = input.readLine()) != null) {
                 list.add(item);
@@ -141,18 +137,18 @@ public class MyPantry extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.nav_Main:
-                            startActivity(new Intent(MyPantry.this, MainActivity.class));
+                            startActivity(new Intent(PantryActivity.this, MainActivity.class));
                             break;
                         case R.id.nav_MealPrep:
-                            startActivity(new Intent(MyPantry.this, MealPrepActivity.class));
+                            startActivity(new Intent(PantryActivity.this, BoardActivity.class));
                             break;
                         case R.id.nav_Browser:
-                            startActivity(new Intent(MyPantry.this, BrowserActivity.class));
+                            startActivity(new Intent(PantryActivity.this, BrowserActivity.class));
                             break;
                         case R.id.nav_Pantry:
                             break;
                         case R.id.nav_Profile:
-                            startActivity(new Intent(MyPantry.this, ProfileActivity.class));
+                            startActivity(new Intent(PantryActivity.this, ProfileActivity.class));
                             break;
 
                     }

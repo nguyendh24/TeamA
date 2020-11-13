@@ -34,6 +34,8 @@ public class Pantry_List {
 
     @Override
     public String toString() {
-        return String.format("%-25s %s%d", getItem(),"x ", getQuantity());
+        //return String.format("%-25s %s%d", getItem(),"x ", getQuantity());
+        return getItem();
+
     }
 }
