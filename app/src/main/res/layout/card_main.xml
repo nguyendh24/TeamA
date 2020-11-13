@@ -7,7 +7,7 @@
     android:clickable="false"
     app:cardCornerRadius="4dp"
     android:foreground="?android:attr/selectableItemBackground"
-    android:id="@+id/cardview_id"
+    android:id="@+id/card_main_id"
     >
     <LinearLayout
         android:layout_width="match_parent"

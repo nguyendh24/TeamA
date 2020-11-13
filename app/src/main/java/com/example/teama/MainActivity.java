@@ -27,30 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private MainAdapter adapter;
     private ArrayList<String> mList;
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()) {
-                        case R.id.nav_Main:
-                            break;
-                        case R.id.nav_MealPrep:
-                            startActivity(new Intent(MainActivity.this, BoardActivity.class));
-                            break;
-                        case R.id.nav_Browser:
-                            startActivity(new Intent(MainActivity.this, BrowserActivity.class));
-                            break;
-                        case R.id.nav_Pantry:
-                            startActivity(new Intent(MainActivity.this, MyPantry.class));
-                            break;
-                        case R.id.nav_Profile:
-                            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-                            break;
-
-                    }
-                    return true;
-                }
-            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeValues() {
-        mRecyclerView = findViewById(R.id.recycle_images);
+        mRecyclerView = findViewById(R.id.recycle_img_main);
         mLayoutManager = new LinearLayoutManager(this);
         adapter = new MainAdapter(mImages);
     }
@@ -79,18 +55,20 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 mImages.get(position);
                 createIngredientDB(mList, file_names[position]);
-                String result = mList.get((int)(Math.random() * mList.size()));
-                Intent resultIntent = new Intent(MainActivity.this, BrowserActivity.class);
-                resultIntent.putExtra("result", result);
-                resultIntent.putExtra("urlList", mList);
-                startActivity(resultIntent);
+                int indexResult = (int)(Math.random() * mList.size());
+                String result = mList.get(indexResult);
+                Intent sendIntent = new Intent(MainActivity.this, BrowserActivity.class);
+                sendIntent.putExtra("result", result);
+                sendIntent.putStringArrayListExtra("urlList", mList);
+                sendIntent.putExtra("index", indexResult);
+                startActivity(sendIntent);
                 finish();
             }
         });
     }
 
     protected InputStream readInTextFiles(String str) {
-        str += "_meals.txt";
+        str += "_meals copy.txt";
         InputStream inputStream = null;
         try {
             inputStream = getResources().getAssets().open(str);
@@ -115,4 +93,29 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.nav_Main:
+                            break;
+                        case R.id.nav_MealPrep:
+                            startActivity(new Intent(MainActivity.this, BoardActivity.class));
+                            break;
+                        case R.id.nav_Browser:
+                            startActivity(new Intent(MainActivity.this, BrowserActivity.class));
+                            break;
+                        case R.id.nav_Pantry:
+                            startActivity(new Intent(MainActivity.this, PantryActivity.class));
+                            break;
+                        case R.id.nav_Profile:
+                            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                            break;
+
+                    }
+                    return true;
+                }
+            };
 }

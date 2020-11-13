@@ -23,40 +23,14 @@ import java.util.Scanner;
 
 //needs a database to store peoples ingredients and recipes
 
-public class MyPantry extends AppCompatActivity {
+public class PantryActivity extends AppCompatActivity {
     private SearchView svIngredients; //search bar for user input
-    private ListView myList; //list view of ingredients from searching
-    private ListView addedItemsList; //will be user's current "on hand groceries"
+    private ListView myList, addedItemsList;
     private ArrayList<String> list; //arrayList that gets added
     private ArrayList<Pantry_List> itemsList;
     private ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
     private PantryAdapter adapterItems;
     private Scanner input; //Global Scanner for reading in different .txt files
-
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()) {
-                        case R.id.nav_Main:
-                            startActivity(new Intent(MyPantry.this, MainActivity.class));
-                            break;
-                        case R.id.nav_MealPrep:
-                            startActivity(new Intent(MyPantry.this, BoardActivity.class));
-                            break;
-                        case R.id.nav_Browser:
-                            startActivity(new Intent(MyPantry.this, BrowserActivity.class));
-                            break;
-                        case R.id.nav_Pantry:
-                            break;
-                        case R.id.nav_Profile:
-                            startActivity(new Intent(MyPantry.this, ProfileActivity.class));
-                            break;
-
-                    }
-                    return true;
-                }
-            };
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -146,4 +120,29 @@ public class MyPantry extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.nav_Main:
+                            startActivity(new Intent(PantryActivity.this, MainActivity.class));
+                            break;
+                        case R.id.nav_MealPrep:
+                            startActivity(new Intent(PantryActivity.this, BoardActivity.class));
+                            break;
+                        case R.id.nav_Browser:
+                            startActivity(new Intent(PantryActivity.this, BrowserActivity.class));
+                            break;
+                        case R.id.nav_Pantry:
+                            break;
+                        case R.id.nav_Profile:
+                            startActivity(new Intent(PantryActivity.this, ProfileActivity.class));
+                            break;
+
+                    }
+                    return true;
+                }
+            };
 }

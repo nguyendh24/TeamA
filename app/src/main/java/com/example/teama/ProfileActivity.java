@@ -79,7 +79,7 @@ public class ProfileActivity extends AppCompatActivity {
                             startActivity(new Intent(ProfileActivity.this, BrowserActivity.class));
                             break;
                         case R.id.nav_Pantry:
-                            startActivity(new Intent(ProfileActivity.this, MyPantry.class));
+                            startActivity(new Intent(ProfileActivity.this, PantryActivity.class));
                             break;
                         case R.id.nav_Profile:
                             break;

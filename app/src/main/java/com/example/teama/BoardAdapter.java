@@ -15,41 +15,42 @@ import java.util.List;
 
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.MyViewHolder> {
 
-    private Context mContext ;
-    private List<Board_Gallery> mData ;
+    private Context bContext ;
+    private List<Board_Gallery> bData ;
 
 
-    public BoardAdapter(Context mContext, List<Board_Gallery> mData) {
-        this.mContext = mContext;
-        this.mData = mData;
+
+    public BoardAdapter(Context bContext, List<Board_Gallery> bData) {
+        this.bContext = bContext;
+        this.bData = bData;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view ;
-        LayoutInflater mInflater = LayoutInflater.from(mContext);
-        view = mInflater.inflate(R.layout.card_board,parent,false);
+        LayoutInflater mInflater = LayoutInflater.from(bContext);
+        view = mInflater.inflate(R.layout.card_board, parent,false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        holder.recipe_title.setText(mData.get(position).getTitle());
-        holder.recipe_image.setImageResource(mData.get(position).getThumbnail());
+        holder.recipe_title.setText(bData.get(position).getTitle());
+        holder.recipe_image.setImageResource(bData.get(position).getThumbnail());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext,BoardActivity.class);
+                Intent intent = new Intent(bContext,BoardActivity.class);
 
                 // passing data to the book activity
-                intent.putExtra("Title",mData.get(position).getTitle());
-                intent.putExtra("Description",mData.get(position).getDescription());
-                intent.putExtra("Thumbnail",mData.get(position).getThumbnail());
+                intent.putExtra("Title",bData.get(position).getTitle());
+                intent.putExtra("Description",bData.get(position).getUrl());
+                intent.putExtra("Thumbnail",bData.get(position).getThumbnail());
                 // start the activity
-                mContext.startActivity(intent);
+                bContext.startActivity(intent);
 
             }
         });
@@ -60,7 +61,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return bData.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -74,7 +75,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.MyViewHolder
 
             recipe_title = (TextView) itemView.findViewById(R.id.recipe_title_id) ;
             recipe_image = (ImageView) itemView.findViewById(R.id.board_img_id);
-            cardView = (CardView) itemView.findViewById(R.id.cardview_id);
+            cardView = (CardView) itemView.findViewById(R.id.card_board_id);
 
 
         }

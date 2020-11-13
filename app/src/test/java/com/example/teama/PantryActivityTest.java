@@ -1,24 +1,10 @@
 package com.example.teama;
 
-import android.app.Activity;
-import android.content.Context;
-
-import org.junit.Rule;
 import org.junit.Test;
 import junit.framework.TestCase;
-import org.junit.Before;
-import androidx.test.core.app.ActivityScenario;
-import androidx.test.platform.app.InstrumentationRegistry;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-
-public class MyPantryTest extends TestCase {
-    private MyPantry test;
+public class PantryActivityTest extends TestCase {
+    private PantryActivity test;
     private Pantry_List itemTest;
 
     @Test
