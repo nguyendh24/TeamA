@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -32,7 +33,6 @@ public class PantryActivity extends AppCompatActivity {
     private static ArrayList<Pantry_List> itemsList;
     private static ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
     private static PantryAdapter adapterItems;
-    private Scanner input; //Global Scanner for reading in different .txt files
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -94,14 +94,14 @@ public class PantryActivity extends AppCompatActivity {
     private void buildGroceryList() {
         itemsList = new ArrayList<>();
         addedItemsList = (ListView)findViewById(R.id.checkable_added_items);
-        addedItemsList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        addedItemsList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, itemsList);
         addedItemsList.setAdapter(adapterItems);
 
         addedItemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                addedItemsList.setItemChecked(i,true);
+                addedItemsList.setItemChecked(i, true);
             }
         });
     }
@@ -109,7 +109,7 @@ public class PantryActivity extends AppCompatActivity {
     private InputStream readInTextFiles() {
         InputStream inputStream = null;
         try {
-            inputStream = getResources().getAssets().open("meats.txt");
+            inputStream = getResources().getAssets().open("SEARCH_INGREDIENTS.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }

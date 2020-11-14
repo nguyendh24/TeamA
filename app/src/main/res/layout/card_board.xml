@@ -24,7 +24,7 @@
         <ImageView
             android:id="@+id/board_img_id"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="160dp"
             android:background="#2d2d2d"
             android:scaleType="centerCrop" />
 

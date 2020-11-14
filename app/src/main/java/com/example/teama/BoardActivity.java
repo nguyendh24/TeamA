@@ -29,7 +29,11 @@ public class BoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_board);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
         buildGallery();
+        if (getIntent().getExtras() != null)
+            addToGallery();
+
     }
 
     private void initializeValues() {
@@ -39,21 +43,21 @@ public class BoardActivity extends AppCompatActivity {
     }
 
     private void buildGallery() {
-        String URL = "";
-        int index = 0;
-        Bundle bundle = getIntent().getExtras();
-        if(bundle !=null) {
-            URL = bundle.getString("URL");
-            index = bundle.getInt("INDEX");
-        }
-
-
-        bImages.add(new Board_Gallery(String.valueOf(index), URL, chick_img.get(index)));
-
         initializeValues();
         bRecyclerView.setHasFixedSize(true);
         bRecyclerView.setLayoutManager(bLayoutManager);
         bRecyclerView.setAdapter(adapter);
+        bImages.add(new Board_Gallery("","", veg_img.get(4)));
+        bImages.add(new Board_Gallery("","", veg_img.get(1)));
+        bImages.add(new Board_Gallery("","", veg_img.get(2)));
+        bImages.add(new Board_Gallery("","", veg_img.get(3)));
+    }
+
+    private void addToGallery() {
+        Bundle bundle = getIntent().getExtras();
+        String URL = bundle.getString("URL");
+        int index = bundle.getInt("INDEX");
+        bImages.add(new Board_Gallery(String.valueOf(index), URL, chick_img.get(index)));
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

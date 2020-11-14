@@ -1,0 +1,44 @@
+chicken
+ground chicken
+beef
+ground beef
+ham
+pork
+ground pork
+turkey
+ground turkey
+bacon
+sausage
+lamb
+milk
+yogurt
+cream
+cheddar cheese
+cheese
+custard
+butter
+cream cheese
+cottage cheese
+tzatziki
+buttermilk
+potato
+carrot
+cabbage
+asparagus
+celery
+lettuce
+cabbage 
+brussels sprouts
+spinach 
+okra
+turnip
+onion
+ginger
+cucumber
+garlic
+cauliflower
+fennel
+pea
+eggplant
+shallot
+

@@ -39,8 +39,6 @@ public class BrowserActivity extends AppCompatActivity {
         } else {
             defaultWebView();
         }
-
-
     }
 
     public void defaultSetting() {
@@ -93,7 +91,6 @@ public class BrowserActivity extends AppCompatActivity {
         bNext.setVisibility(View.VISIBLE);
         addBtn.setVisibility(View.VISIBLE);
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("google.com");
 
         WebSettings webSet = webView.getSettings();
         webSet.setJavaScriptEnabled(true);
