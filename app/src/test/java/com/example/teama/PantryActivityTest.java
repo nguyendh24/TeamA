@@ -10,13 +10,14 @@ public class PantryActivityTest extends TestCase {
     @Test
     public void testToString_true() {
         itemTest = new Pantry_List("apple", 2);
-        assertEquals(String.format("%-25s %s%d", "apple","x ", 2), itemTest.toString());
+        assertEquals("apple", itemTest.toString());
+
     }
 
     @Test
     public void testToString_false() {
         itemTest = new Pantry_List("apple", 2);
-        assertNotSame(String.format("%-25s %s%d", "orange","x ", 2), itemTest.toString());
+        assertNotSame("orange", itemTest.toString());
     }
     
 }
