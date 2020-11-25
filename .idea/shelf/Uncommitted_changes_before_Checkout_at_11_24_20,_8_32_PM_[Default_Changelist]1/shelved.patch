@@ -1,0 +1,221 @@
+Index: app/src/main/java/com/example/teama/PantryActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.teama;\n\nimport android.content.Intent;\nimport android.os.Build;\nimport android.os.Bundle;\nimport android.text.TextUtils;\nimport android.view.MenuItem;\nimport android.view.View;\nimport android.widget.AdapterView;\nimport android.widget.ArrayAdapter;\nimport android.widget.CheckBox;\nimport android.widget.ListView;\nimport android.widget.SearchView;\nimport android.widget.TextView;\n\nimport androidx.annotation.NonNull;\nimport androidx.annotation.RequiresApi;\nimport androidx.appcompat.app.AppCompatActivity;\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\nimport java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.InputStreamReader;\nimport java.util.ArrayList;\nimport java.util.Scanner;\n\n//needs a database to store peoples ingredients and recipes\n\npublic class PantryActivity extends AppCompatActivity {\n    private SearchView svIngredients; //search bar for user input\n    private ListView myList, addedItemsList;\n    private ArrayList<String> list; //arrayList that gets added\n    private static ArrayList<Pantry_List> itemsList;\n    private static ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list\n    private static PantryAdapter adapterItems;\n\n    @RequiresApi(api = Build.VERSION_CODES.M)\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_my_pantry);\n        /**\n         * BottomNav bar instantiated and sets the buttons from navListener\n         */\n        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);\n        bottomNav.setOnNavigationItemSelectedListener(navListener);\n\n         //Only displays list when user clicks on search bar\n        buildSearchList();\n        buildGroceryList();\n        createIngredientDB(list);\n\n\n        svIngredients.setOnQueryTextListener(new SearchView.OnQueryTextListener() {\n            @Override\n            public boolean onQueryTextSubmit(String s) {\n                return false;\n            }\n\n            @Override\n            public boolean onQueryTextChange(String s) {\n                adapter.getFilter().filter(s);\n                svIngredients.onActionViewExpanded();\n                if (!TextUtils.isEmpty(s)) {\n                    myList.setVisibility(View.VISIBLE);\n                    addedItemsList.setVisibility(View.GONE);\n                } else {\n                    myList.setVisibility(View.GONE);\n                    addedItemsList.setVisibility(View.VISIBLE);\n                }\n                return false;\n            }\n        });\n\n        myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {\n            @Override\n            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {\n                Object selectedItem = myList.getItemAtPosition(i);\n                svIngredients.onActionViewCollapsed();\n                Pantry_List pantry_item = new Pantry_List(selectedItem.toString(),1);\n                itemsList.add(pantry_item);\n            }\n        });\n    }\n\n    private void buildSearchList() {\n        list = new ArrayList<>();\n        myList = (ListView) findViewById(R.id.myList);\n        svIngredients = (SearchView) findViewById(R.id.searchIngredients);\n        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list); //adapter takes in list; database\n        myList.setAdapter(adapter);\n    }\n\n    private void buildGroceryList() {\n        itemsList = new ArrayList<>();\n        addedItemsList = (ListView)findViewById(R.id.checkable_added_items);\n        addedItemsList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);\n        adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, itemsList);\n        addedItemsList.setAdapter(adapterItems);\n\n        addedItemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {\n            @Override\n            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {\n                addedItemsList.setItemChecked(i, true);\n            }\n        });\n    }\n\n    private InputStream readInTextFiles() {\n        InputStream inputStream = null;\n        try {\n            inputStream = getResources().getAssets().open(\"SEARCH_INGREDIENTS.txt\");\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n        return inputStream;\n    }\n\n    private void createIngredientDB(ArrayList<String> list) {\n        InputStreamReader streamReader;\n        BufferedReader input;\n        String item = \"\";\n        try {\n            streamReader = new InputStreamReader(readInTextFiles());\n            input = new BufferedReader(streamReader);\n            while ((item = input.readLine()) != null) {\n                list.add(item);\n            }\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n\n    private BottomNavigationView.OnNavigationItemSelectedListener navListener =\n            new BottomNavigationView.OnNavigationItemSelectedListener() {\n                @Override\n                public boolean onNavigationItemSelected(@NonNull MenuItem item) {\n                    switch (item.getItemId()) {\n                        case R.id.nav_Main:\n                            startActivity(new Intent(PantryActivity.this, MainActivity.class));\n                            break;\n                        case R.id.nav_MealPrep:\n                            startActivity(new Intent(PantryActivity.this, BoardActivity.class));\n                            break;\n                        case R.id.nav_Browser:\n                            startActivity(new Intent(PantryActivity.this, BrowserActivity.class));\n                            break;\n                        case R.id.nav_Pantry:\n                            break;\n                        case R.id.nav_Profile:\n                            startActivity(new Intent(PantryActivity.this, ProfileActivity.class));\n                            break;\n\n                    }\n                    return true;\n                }\n            };\n}
+===================================================================
+--- app/src/main/java/com/example/teama/PantryActivity.java	(revision 9545daa118cdf806b0e22be617c9c05b2469a315)
++++ app/src/main/java/com/example/teama/PantryActivity.java	(date 1606267219000)
+@@ -3,12 +3,15 @@
+ import android.content.Intent;
+ import android.os.Build;
+ import android.os.Bundle;
++import android.text.Editable;
+ import android.text.TextUtils;
++import android.text.TextWatcher;
+ import android.view.MenuItem;
+ import android.view.View;
+ import android.widget.AdapterView;
+ import android.widget.ArrayAdapter;
+ import android.widget.CheckBox;
++import android.widget.EditText;
+ import android.widget.ListView;
+ import android.widget.SearchView;
+ import android.widget.TextView;
+@@ -27,132 +30,84 @@
+ //needs a database to store peoples ingredients and recipes
+ 
+ public class PantryActivity extends AppCompatActivity {
+-    private SearchView svIngredients; //search bar for user input
+-    private ListView myList, addedItemsList;
+-    private ArrayList<String> list; //arrayList that gets added
+-    private static ArrayList<Pantry_List> itemsList;
+-    private static ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
+-    private static PantryAdapter adapterItems;
+-
++    public ArrayAdapter adapter;
+     @RequiresApi(api = Build.VERSION_CODES.M)
+     @Override
++
+     protected void onCreate(Bundle savedInstanceState) {
++
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_my_pantry);
+-        /**
+-         * BottomNav bar instantiated and sets the buttons from navListener
+-         */
++        ListView list = (ListView) findViewById(R.id.checkable_added_items);
++        EditText theFilter = (EditText) findViewById(R.id.searchIngredients);
++        theFilter.requestFocus();
+         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+-        bottomNav.setOnNavigationItemSelectedListener(navListener);
++        ArrayList<String> ingredients = new ArrayList<>();
+ 
+-         //Only displays list when user clicks on search bar
+-        buildSearchList();
+-        buildGroceryList();
+-        createIngredientDB(list);
+ 
++        ingredients.add("milk");
++        ingredients.add("yogurt");
++        ingredients.add("cream");
++        ingredients.add("cheese");
++        ingredients.add("custard");
++        ingredients.add("butter");
++        ingredients.add("cream cheese");
++        ingredients.add("cottage cheese");
++        ingredients.add("tzatziki");
++        ingredients.add("buttermilk");
++        ingredients.add("chicken");
++        ingredients.add("ground chicken");
++        ingredients.add("beef");
++        ingredients.add("ground beef");
++        ingredients.add("ham");
++        ingredients.add("pork");
++        ingredients.add("ground pork");
++        ingredients.add("turkey");
++        ingredients.add("ground turkey");
++        ingredients.add("bacon");
++        ingredients.add("sausage");
++        ingredients.add("lamb");
++        ingredients.add("potato");
++        ingredients.add("carrot");
++        ingredients.add("cabbage");
++        ingredients.add("asparagus");
++        ingredients.add("celery");
++        ingredients.add("lettuce");
++        ingredients.add("cabbage");
++        ingredients.add("brussel sprouts");
++        ingredients.add("spinach");
++        ingredients.add("okra");
++        ingredients.add("turnip");
++        ingredients.add("onion");
++        ingredients.add("ginger");
++        ingredients.add("cucumber");
++        ingredients.add("garlix");
++        ingredients.add("cauliflower");
++        ingredients.add("fennel");
++        ingredients.add("pea");
++        ingredients.add("eggplant");
++        ingredients.add("shallot");
+ 
+-        svIngredients.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+-            @Override
+-            public boolean onQueryTextSubmit(String s) {
+-                return false;
+-            }
++        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ingredients);
++        list.setAdapter(adapter);
+ 
+-            @Override
+-            public boolean onQueryTextChange(String s) {
+-                adapter.getFilter().filter(s);
+-                svIngredients.onActionViewExpanded();
+-                if (!TextUtils.isEmpty(s)) {
+-                    myList.setVisibility(View.VISIBLE);
+-                    addedItemsList.setVisibility(View.GONE);
+-                } else {
+-                    myList.setVisibility(View.GONE);
+-                    addedItemsList.setVisibility(View.VISIBLE);
+-                }
+-                return false;
+-            }
+-        });
+ 
+-        myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+-            @Override
+-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+-                Object selectedItem = myList.getItemAtPosition(i);
+-                svIngredients.onActionViewCollapsed();
+-                Pantry_List pantry_item = new Pantry_List(selectedItem.toString(),1);
+-                itemsList.add(pantry_item);
+-            }
+-        });
+-    }
++
++            theFilter.addTextChangedListener(new TextWatcher() {
++                @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
++
++                }
+ 
+-    private void buildSearchList() {
+-        list = new ArrayList<>();
+-        myList = (ListView) findViewById(R.id.myList);
+-        svIngredients = (SearchView) findViewById(R.id.searchIngredients);
+-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list); //adapter takes in list; database
+-        myList.setAdapter(adapter);
+-    }
++                @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
++                    (PantryActivity.this).adapter.getFilter().filter(s);
++                }
+ 
+-    private void buildGroceryList() {
+-        itemsList = new ArrayList<>();
+-        addedItemsList = (ListView)findViewById(R.id.checkable_added_items);
+-        addedItemsList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+-        adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, itemsList);
+-        addedItemsList.setAdapter(adapterItems);
++                @Override public void afterTextChanged(Editable s) {
+ 
+-        addedItemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+-            @Override
+-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+-                addedItemsList.setItemChecked(i, true);
+-            }
+-        });
+-    }
++                }
++            });
++        }
+ 
+-    private InputStream readInTextFiles() {
+-        InputStream inputStream = null;
+-        try {
+-            inputStream = getResources().getAssets().open("SEARCH_INGREDIENTS.txt");
+-        } catch (IOException e) {
+-            e.printStackTrace();
+-        }
+-        return inputStream;
+-    }
+ 
+-    private void createIngredientDB(ArrayList<String> list) {
+-        InputStreamReader streamReader;
+-        BufferedReader input;
+-        String item = "";
+-        try {
+-            streamReader = new InputStreamReader(readInTextFiles());
+-            input = new BufferedReader(streamReader);
+-            while ((item = input.readLine()) != null) {
+-                list.add(item);
+-            }
+-        } catch (IOException e) {
+-            e.printStackTrace();
+-        }
+-    }
+-
+-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+-            new BottomNavigationView.OnNavigationItemSelectedListener() {
+-                @Override
+-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+-                    switch (item.getItemId()) {
+-                        case R.id.nav_Main:
+-                            startActivity(new Intent(PantryActivity.this, MainActivity.class));
+-                            break;
+-                        case R.id.nav_MealPrep:
+-                            startActivity(new Intent(PantryActivity.this, BoardActivity.class));
+-                            break;
+-                        case R.id.nav_Browser:
+-                            startActivity(new Intent(PantryActivity.this, BrowserActivity.class));
+-                            break;
+-                        case R.id.nav_Pantry:
+-                            break;
+-                        case R.id.nav_Profile:
+-                            startActivity(new Intent(PantryActivity.this, ProfileActivity.class));
+-                            break;
+ 
+-                    }
+-                    return true;
+-                }
+-            };
+-}
+\ No newline at end of file
++}
