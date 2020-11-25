@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 //needs a database to store peoples ingredients and recipes
@@ -34,11 +36,11 @@ public class PantryActivity extends AppCompatActivity {
      ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
     private static PantryAdapter adapterItems;
 
-    String[] nameList = {"milk", "yogurt", "cream cheese", "custard" , "butter", "cream cheese",
+    ArrayList<String> nameList = new ArrayList<>(Arrays.asList("milk", "yogurt", "cream cheese", "custard" , "butter", "cream cheese",
             "cottage cheese", "tzatziki", "buttermilk", "chicken", "ground chicken","beef", "ground beef",
             "ham", "pork", "ground pork", "turkey", "ground turkey", "bacon", "sausage", "lamb","potato", "carrot", "cabbage", "asparagus", "celery", "lettuce", "cabbage", "brussels sprouts",
-            "spinach", "okra", "turnip", "onion", "ginger", "cucumber", "garlic", "cauliflower", "fennel", "pea", "eggplant" ,"shallot"
-    };
+            "spinach", "okra", "turnip", "onion", "ginger", "cucumber", "garlic", "cauliflower", "fennel", "pea", "eggplant" ,"shallot"));
+    ArrayList<String> list2 = new ArrayList<>();
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +55,12 @@ public class PantryActivity extends AppCompatActivity {
         myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                String clicked = nameList.get(position);
+                list2.add(clicked);
+                Toast.makeText(PantryActivity.this, "You added "+parent.getItemAtPosition(position).toString(),Toast.LENGTH_SHORT).show();
             }
         });
+
         svIngredients.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
