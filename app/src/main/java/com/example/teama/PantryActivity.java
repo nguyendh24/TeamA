@@ -1,30 +1,17 @@
 package com.example.teama;
-
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 //needs a database to store peoples ingredients and recipes
 
@@ -33,7 +20,7 @@ public class PantryActivity extends AppCompatActivity {
     private ListView myList, addedItemsList;
     private ArrayList<String> list; //arrayList that gets added
     private static ArrayList<Pantry_List> itemsList;
-     ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
+    ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
     private static PantryAdapter adapterItems;
 
     ArrayList<String> nameList = new ArrayList<>(Arrays.asList("milk", "yogurt", "cream cheese", "custard" , "butter", "cream cheese",
