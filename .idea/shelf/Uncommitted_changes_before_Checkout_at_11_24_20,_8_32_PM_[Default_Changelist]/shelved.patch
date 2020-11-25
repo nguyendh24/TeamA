@@ -1,0 +1,65 @@
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\nbuildscript {\n    repositories {\n        google()\n        jcenter()\n    }\n    dependencies {\n        classpath 'com.android.tools.build:gradle:4.1.0'\n        classpath 'com.google.gms:google-services:4.3.4'\n\n        // NOTE: Do not place your application dependencies here; they belong\n        // in the individual module build.gradle files\n    }\n}\n\nallprojects {\n    repositories {\n        google()\n        jcenter()\n    }\n}\n\ntask clean(type: Delete) {\n    delete rootProject.buildDir\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision 9545daa118cdf806b0e22be617c9c05b2469a315)
++++ build.gradle	(date 1606261251000)
+@@ -5,7 +5,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:4.1.0'
++        classpath 'com.android.tools.build:gradle:4.1.1'
+         classpath 'com.google.gms:google-services:4.3.4'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+Index: app/src/main/res/layout/activity_my_pantry.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".PantryActivity\"\n    android:background = \"@drawable/plain\"\n    >\n\n    <SearchView\n        android:id=\"@+id/searchIngredients\"\n        android:layout_width=\"320dp\"\n        android:layout_height=\"40dp\"\n        android:layout_marginTop=\"20dp\"\n        android:background=\"#CCFFFFFF\"\n        android:focusable=\"false\"\n        android:focusableInTouchMode=\"true\"\n        android:iconifiedByDefault=\"false\"\n        android:orientation=\"horizontal\"\n        android:queryHint=\"Search ingredients\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n\n    <ListView\n        android:id=\"@+id/myList\"\n        android:layout_width=\"310dp\"\n        android:layout_height=\"60dp\"\n        android:background=\"#FFFFFF\"\n        android:clickable=\"false\"\n        android:divider=\"@android:color/transparent\"\n        android:rowHeight=\"20dp\"\n        android:visibility=\"gone\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/searchIngredients\"\n        app:layout_constraintVertical_bias=\"0.0\" />\n\n    <com.google.android.material.bottomnavigation.BottomNavigationView\n        android:id=\"@+id/bottom_nav\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"60dp\"\n        android:background=\"?android:attr/windowBackground\"\n        app:itemHorizontalTranslationEnabled=\"false\"\n        app:labelVisibilityMode=\"unlabeled\"\n        app:itemIconTint=\"@android:color/darker_gray\"\n        app:itemTextColor=\"@android:color/darker_gray\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"1.0\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"1.0\"\n        app:menu=\"@menu/bottom_nav\" />\n\n    <ListView\n        android:id=\"@+id/checkable_added_items\"\n        android:layout_width=\"0dp\"\n        android:layout_height=\"0dp\"\n        android:layout_marginTop=\"16dp\"\n        android:background=\"@drawable/notepad\"\n        android:divider=\"@android:color/transparent\"\n        android:drawSelectorOnTop=\"true\"\n        android:duplicateParentState=\"false\"\n        android:fadeScrollbars=\"true\"\n        android:fastScrollEnabled=\"true\"\n        android:filterTouchesWhenObscured=\"false\"\n        android:paddingTop=\"70dp\"\n        app:layout_constraintBottom_toTopOf=\"@+id/bottom_nav\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/searchIngredients\" />\n\n    <TextView\n        android:id=\"@+id/Pantry\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"40dp\"\n        android:layout_marginTop=\"16dp\"\n        android:fontFamily=\"@font/bad_script\"\n        android:text=\"My Grocery List\"\n        android:textColor=\"#3E3E3E\"\n        android:textSize=\"30sp\"\n        android:textStyle=\"bold\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.427\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/myList\" />\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_my_pantry.xml	(revision 9545daa118cdf806b0e22be617c9c05b2469a315)
++++ app/src/main/res/layout/activity_my_pantry.xml	(date 1606267710000)
+@@ -8,10 +8,11 @@
+     android:background = "@drawable/plain"
+     >
+ 
+-    <SearchView
++
++    <EditText
+         android:id="@+id/searchIngredients"
+         android:layout_width="320dp"
+-        android:layout_height="40dp"
++        android:layout_height="50dp"
+         android:layout_marginTop="20dp"
+         android:background="#CCFFFFFF"
+         android:focusable="false"
+@@ -20,10 +21,10 @@
+         android:orientation="horizontal"
+         android:queryHint="Search ingredients"
+         app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.494"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+ 
+-
+     <ListView
+         android:id="@+id/myList"
+         android:layout_width="310dp"
+@@ -70,8 +71,10 @@
+         android:paddingTop="70dp"
+         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+         app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/searchIngredients" />
++        app:layout_constraintTop_toBottomOf="@+id/searchIngredients"
++        app:layout_constraintVertical_bias="0.0" />
+ 
+     <TextView
+         android:id="@+id/Pantry"
