@@ -17,6 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class ProfileActivity extends AppCompatActivity {
     private Button logoutButton;
@@ -37,6 +38,9 @@ public class ProfileActivity extends AppCompatActivity {
         displayEmail = findViewById(R.id.Login_Email);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                .build();
         String name = "";
         String email;
         Uri photoUri;
@@ -45,13 +49,10 @@ public class ProfileActivity extends AppCompatActivity {
             name = user.getDisplayName();
              email = user.getEmail();
              photoUri = user.getPhotoUrl();
-             long date = user.getMetadata().getCreationTimestamp();
-            //check if users email is verified
             boolean emailVerified = user.isEmailVerified();
-            String uid = user.getUid();
-
             profileName.setText(name);
             displayEmail.setText(email);
+
 
         }
 
