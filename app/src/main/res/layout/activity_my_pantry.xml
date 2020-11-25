@@ -38,23 +38,6 @@
         app:layout_constraintTop_toBottomOf="@+id/searchIngredients"
         app:layout_constraintVertical_bias="0.0" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="?android:attr/windowBackground"
-        app:itemHorizontalTranslationEnabled="false"
-        app:labelVisibilityMode="unlabeled"
-        app:itemIconTint="@android:color/darker_gray"
-        app:itemTextColor="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/bottom_nav" />
-
     <ListView
         android:id="@+id/checkable_added_items"
         android:layout_width="0dp"
@@ -68,10 +51,12 @@
         android:fastScrollEnabled="true"
         android:filterTouchesWhenObscured="false"
         android:paddingTop="70dp"
+        android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchIngredients" />
+        app:layout_constraintTop_toBottomOf="@+id/searchIngredients"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/Pantry"
@@ -89,4 +74,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myList" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="?android:attr/windowBackground"
+        app:itemHorizontalTranslationEnabled="false"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconTint="@android:color/darker_gray"
+        app:itemTextColor="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/bottom_nav" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import androidx.annotation.NonNull;
@@ -24,11 +25,16 @@ import java.util.ArrayList;
 
 public class PantryActivity extends AppCompatActivity {
     private SearchView svIngredients; //search bar for user input
-    private ListView myList, addedItemsList;
-    private ArrayList<String> list; //arrayList that gets added
-    private static ArrayList<Pantry_List> itemsList;
+    private ListView myList, addToGrocery;
+    private ArrayList<String> searchList; //arrayList that gets added
+    private static ArrayList<Pantry_List> groceryList;
     private static ArrayAdapter<String> adapter; //allows us to link each item in myList to each string in list
     private static PantryAdapter adapterItems;
+    final String[] nameList = {"milk", "yogurt", "cream cheese", "custard" , "butter", "cream cheese",
+            "cottage cheese", "tzatziki", "buttermilk", "chicken", "ground chicken","beef", "ground beef",
+            "ham", "pork", "ground pork", "turkey", "ground turkey", "bacon", "sausage", "lamb","potato", "carrot", "cabbage", "asparagus", "celery", "lettuce", "cabbage", "brussels sprouts",
+            "spinach", "okra", "turnip", "onion", "ginger", "cucumber", "garlic", "cauliflower", "fennel", "pea", "eggplant" ,"shallot"
+    };
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -44,7 +50,7 @@ public class PantryActivity extends AppCompatActivity {
          //Only displays list when user clicks on search bar
         buildSearchList();
         buildGroceryList();
-        createIngredientDB(list);
+       // createIngredientDB(searchList);
 
 
         svIngredients.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -59,10 +65,10 @@ public class PantryActivity extends AppCompatActivity {
                 svIngredients.onActionViewExpanded();
                 if (!TextUtils.isEmpty(s)) {
                     myList.setVisibility(View.VISIBLE);
-                    addedItemsList.setVisibility(View.GONE);
+                    addToGrocery.setVisibility(View.GONE);
                 } else {
                     myList.setVisibility(View.GONE);
-                    addedItemsList.setVisibility(View.VISIBLE);
+                    addToGrocery.setVisibility(View.VISIBLE);
                 }
                 return false;
             }
@@ -74,32 +80,34 @@ public class PantryActivity extends AppCompatActivity {
                 Object selectedItem = myList.getItemAtPosition(i);
                 svIngredients.onActionViewCollapsed();
                 Pantry_List pantry_item = new Pantry_List(selectedItem.toString(),1);
-                itemsList.add(pantry_item);
+                groceryList.add(pantry_item);
+            }
+        });
+
+        addToGrocery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                CheckedTextView checkedTextView = findViewById(R.id.itemInPantry);
+                if (checkedTextView.isChecked()) {
+                    addToGrocery.setItemChecked(i, true);
+                }
             }
         });
     }
 
     private void buildSearchList() {
-        list = new ArrayList<>();
         myList = (ListView) findViewById(R.id.myList);
         svIngredients = (SearchView) findViewById(R.id.searchIngredients);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list); //adapter takes in list; database
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nameList); //adapter takes in list; database
         myList.setAdapter(adapter);
     }
 
     private void buildGroceryList() {
-        itemsList = new ArrayList<>();
-        addedItemsList = (ListView)findViewById(R.id.checkable_added_items);
-        addedItemsList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, itemsList);
-        addedItemsList.setAdapter(adapterItems);
-
-        addedItemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                addedItemsList.setItemChecked(i, true);
-            }
-        });
+        groceryList = new ArrayList<>();
+        addToGrocery = (ListView)findViewById(R.id.checkable_added_items);
+        addToGrocery.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        adapterItems = new PantryAdapter(this, R.layout.adapter_view_layout, groceryList);
+        addToGrocery.setAdapter(adapterItems);
     }
 
     private InputStream readInTextFiles() {
