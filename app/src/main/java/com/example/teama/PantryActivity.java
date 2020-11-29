@@ -26,7 +26,7 @@ public class PantryActivity extends AppCompatActivity {
     ArrayList<String> nameList = new ArrayList<>(Arrays.asList("milk", "yogurt", "cream cheese", "custard" , "butter", "cream cheese",
             "cottage cheese", "tzatziki", "buttermilk", "chicken", "ground chicken","beef", "ground beef",
             "ham", "pork", "ground pork", "turkey", "ground turkey", "bacon", "sausage", "lamb","potato", "carrot", "cabbage", "asparagus", "celery", "lettuce", "cabbage", "brussels sprouts",
-            "spinach", "okra", "turnip", "onion", "ginger", "cucumber", "garlic", "cauliflower", "fennel", "pea", "eggplant" ,"shallot"));
+            "spinach", "okra", "turnip", "onion", "ginger", "cucumber", "garlic", "cauliflower", "fennel", "pea", "eggplant" ,"shallot", "red onion"));
     ArrayList<String> list2 = new ArrayList<>();
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
