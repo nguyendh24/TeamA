@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView eNewUser;
     private int counter = 5;
     private String TAG;
+    private TextView forgotPassword;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
 
@@ -69,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         eLogin = findViewById(R.id.buttonLogin);
         eNewUser = findViewById(R.id.textViewSignUp);
         fAuth = FirebaseAuth.getInstance();
+        forgotPassword = findViewById(R.id.ResetPassword);
 
 
 
@@ -93,6 +95,12 @@ public class LoginActivity extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+        forgotPassword.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, ForgottenPassword.class));
+            }
+        });
         eNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
