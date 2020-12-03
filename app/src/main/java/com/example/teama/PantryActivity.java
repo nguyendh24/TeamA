@@ -1,12 +1,16 @@
 package com.example.teama;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,7 +37,6 @@ public class PantryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pantry);
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         svIngredients = findViewById(R.id.searchIngredients);
         myList = findViewById(R.id.checkable_added_items);
 
@@ -45,6 +48,10 @@ public class PantryActivity extends AppCompatActivity {
                 String clicked = nameList.get(position);
                 list2.add(clicked);
                 Toast.makeText(PantryActivity.this, "You added "+parent.getItemAtPosition(position).toString(),Toast.LENGTH_SHORT).show();
+
+                BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+                bottomNav.setOnNavigationItemSelectedListener(navListener);
+
             }
         });
 
@@ -62,4 +69,27 @@ public class PantryActivity extends AppCompatActivity {
             }
         });
     }
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.nav_Main:
+                            startActivity(new Intent(PantryActivity.this, MainActivity.class));
+                            break;
+                        case R.id.nav_MealPrep:
+                            startActivity(new Intent(PantryActivity.this, BoardActivity.class));
+                            break;
+                        case R.id.nav_Browser:
+                            startActivity(new Intent(PantryActivity.this, BrowserActivity.class));
+                            break;
+                        case R.id.nav_Pantry:
+                            break;
+                        case R.id.nav_Profile:
+                            startActivity(new Intent(PantryActivity.this, ProfileActivity.class));
+                            break;
+                    }
+                    return true;
+                }
+            };
 }

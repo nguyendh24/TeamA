@@ -8,6 +8,9 @@
     android:background = "@drawable/plain"
     >
 
+
+
+
     <SearchView
         android:id="@+id/searchIngredients"
         android:layout_width="320dp"
