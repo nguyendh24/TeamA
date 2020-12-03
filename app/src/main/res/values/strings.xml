@@ -56,6 +56,9 @@
     <string name="re_enter_password">Re-enter password</string>
     <string name="enter_in_your_name">Enter in your Name</string>
     <string name="create_account">Create Account</string>
+    <string name="forgot_password_click_here">Forgot Password? Click here</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="send_reset_email">Send reset email</string>
 
 
 </resources>

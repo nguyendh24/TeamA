@@ -24,9 +24,9 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView profileName;
     private TextView displayEmail;
     private TextView memberSince;
+    private TextView dateOfBirth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
@@ -36,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         logoutButton = findViewById(R.id.signOut);
         profileName = findViewById(R.id.User_Name);
         displayEmail = findViewById(R.id.Login_Email);
+        dateOfBirth = findViewById(R.id.Member_Date);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -53,10 +54,7 @@ public class ProfileActivity extends AppCompatActivity {
             profileName.setText(name);
             displayEmail.setText(email);
 
-
         }
-
-
 
         findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +92,6 @@ public class ProfileActivity extends AppCompatActivity {
                             break;
                         case R.id.nav_Profile:
                             break;
-
                     }
                     return true;
                 }
