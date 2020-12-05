@@ -1,0 +1,6 @@
+    steps:
+    - name: Send Push Notification
+      uses: techulus/push-github-action@1.0.0
+      env:
+        API_KEY: ${{ secrets.5b9b6927-a96a-4a26-a877-d12edbdb9144 }}
+        MESSAGE: "There is a new commit!"
