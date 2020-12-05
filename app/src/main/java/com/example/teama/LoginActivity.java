@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                 String inputPW = ePassword.getText().toString();
 
                 //admin login
-                if(inputEmail.equalsIgnoreCase("admin") && inputPW.equalsIgnoreCase("1234567")){
+                if(inputEmail.equalsIgnoreCase("admin") && inputPW.equalsIgnoreCase("12345")){
                     //setContentView(R.layout.activity_main);
                     Toast.makeText(LoginActivity.this,"Admin login",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
