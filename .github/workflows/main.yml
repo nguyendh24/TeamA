@@ -1,0 +1,15 @@
+name: Push on build
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send Push Notification
+      uses: techulus/push-github-action@1.0.0
+      env:
+        API_KEY: ${{ 0798773f-cd1a-4f16-b738-e660834b2afb}}
+        MESSAGE: "Hey Darius there is a new Build"
